@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+.homepage {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro-box {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  background-color:rgba(255, 255, 255,0.2);;
+  background-image: url('../image/pinMap.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  
+  color: white;
+  padding: 2rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Playfair Display', sans-serif;
+}
+
+.intro-box-top {
+  grid-row: 1;
+}
+
+.intro-box-bottom {
+  grid-row: 3;
+}
+
+.intro-box h1 {
+  font-family: 'Dancing Script';
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 5.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.intro-box h2 {
+  font-family: 'Playfair Display', sans-serif;
+  letter-spacing: 4px;
+  font-weight: 500;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.intro-box p {
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 300;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+.detail-intro {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro-box p {
+  font-family: 'Playfair Display', sans-serif;
+  max-width: 700px; 
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.detail-intro p {
+  font-family: 'Playfair Display', sans-serif;
+  font-size: 1.2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  line-height: 1.8;
+  color: #444;  /* Slightly softer than pure black */
+}
+
+.signIn-button {
+  font-family: 'Playfair Display', sans-serif;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  background: transparent; 
+  color: white; 
+  border: none;
+  border-bottom: 2px solid white; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.signIn-button:hover {
+  transform: translateY(-2px);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7); 
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 8rem 8rem;
+  background: #f8f8f8;
+  margin-top: 3rem;
+  background-image: url('../image/sea.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.feature-item {
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  font-family: 'Playfair Display', sans-serif;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  background: #f8f8f8;
+  border-radius: 50%;
+  color: #333;
+}
+
+.feature-item h3 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600;
+  font-family: 'Playfair Display', sans-serif;
+}
+
+.feature-item p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1rem;
+  font-family: 'Playfair Display', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+  }
+
+  .intro-box-top h1 {
+    font-size: 3rem;
+  }
+
+  .intro-box-top h3 {
+    font-size: 1.4rem;
+  }
+
+}
