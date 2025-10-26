@@ -1,0 +1,176 @@
+.friend-page {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+}
+
+.friend-page h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+/* 搜索部分 */
+.search-section {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.search-section h2 {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 1.3em;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.search-box button {
+  padding: 12px 30px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.search-box button:hover {
+  background: #45a049;
+}
+
+/* 搜索结果 */
+.search-results {
+  margin-top: 20px;
+}
+
+.search-results h3 {
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.user-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-card span {
+  flex: 1;
+  font-weight: 500;
+  color: #333;
+}
+
+.user-card button {
+  padding: 8px 20px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.user-card button:hover {
+  background: #0b7dda;
+}
+
+/* 好友列表部分 */
+.friends-section {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.friends-section h2 {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 1.3em;
+}
+
+.friends-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.friend-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.friend-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.friend-card span {
+  font-weight: 500;
+  color: #333;
+}
+
+.no-friends {
+  text-align: center;
+  color: #999;
+  padding: 40px;
+  font-style: italic;
+}
+
+/* 返回按钮 */
+.back-button {
+  display: block;
+  margin: 40px auto 0;
+  padding: 12px 40px;
+  background: #666;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  background: #555;
+}

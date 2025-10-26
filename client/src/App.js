@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Homepage from './Homepage';
-import SignIn from './SignIn';
-import HomepageAfterLogin from './HomepageAfterLogin';
-import ProfilePage from './ProfilePage';
-import JourneyDetails from './JourneyDetails';
-import SearchPage from './SearchPage';
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./Homepage";
+import SignIn from "./SignIn";
+import HomepageAfterLogin from "./HomepageAfterLogin";
+import ProfilePage from "./ProfilePage";
+import JourneyDetails from "./JourneyDetails";
+import SearchPage from "./SearchPage";
+import FriendPage from "./FriendPage";
 
 function App() {
   const [userProfile, setUserProfile] = useState({
-    id: '',
-    theme: 'light',
+    id: "",
+    theme: "light",
   });
 
   const updateUserProfile = (updatedProfile) => {
@@ -28,10 +29,16 @@ function App() {
       <Route path="/homepageafterlogin" element={<HomepageAfterLogin />} />
       <Route
         path="/profile"
-        element={<ProfilePage userProfile={userProfile} updateUserProfile={updateUserProfile} />}
+        element={
+          <ProfilePage
+            userProfile={userProfile}
+            updateUserProfile={updateUserProfile}
+          />
+        }
       />
       <Route path="/journey/:id" element={<JourneyDetails />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/friends" element={<FriendPage />} />
     </Routes>
   );
 }
