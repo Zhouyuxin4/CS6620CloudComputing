@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "./Layout";
 import Cookies from "js-cookie";
 import "./css/Friend.css";
+import API_BASE_URL from "./config";
 
 function FriendPage() {
   const [keyword, setKeyword] = useState("");
@@ -18,7 +19,7 @@ function FriendPage() {
 
   const fetchFriends = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/friends/list", {
+      const response = await axios.get(`${API_BASE_URL}/friends/list`, {
         withCredentials: true,
       });
       setFriends(response.data);
@@ -35,7 +36,7 @@ function FriendPage() {
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/friends/search/${keyword}`,
+        `${API_BASE_URL}/friends/search/${keyword}`,
         { withCredentials: true }
       );
       setSearchResults(response.data);
@@ -48,7 +49,7 @@ function FriendPage() {
   const handleAddFriend = async (friendId, friendName) => {
     try {
       await axios.post(
-        `http://localhost:3000/friends/add/${friendId}`,
+        `${API_BASE_URL}/friends/add/${friendId}`,
         {},
         { withCredentials: true }
       );
