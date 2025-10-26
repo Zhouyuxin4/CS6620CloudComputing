@@ -101,7 +101,6 @@ exports.deleteUser = async (req, res) => {
 };
 
 //Update User
-// ✅ 正确的代码
 exports.updateUser = async (req, res) => {
   try {
     const currentUserName = req.params.userName;
@@ -109,38 +108,31 @@ exports.updateUser = async (req, res) => {
     const profilePicture = req.file;
 
     console.log("===== UPDATE USER START =====");
-    console.log("Current username from URL:", currentUserName);
+    console.log("Current username:", currentUserName);
     console.log("Request body:", req.body);
-    console.log("Request file:", req.file ? "Yes" : "No");
+    console.log("Has file:", profilePicture ? "Yes" : "No");
 
-    // 检查是否要更新用户名
+    // 更新用户名
     if (req.body.userName && req.body.userName !== currentUserName) {
-      console.log(
-        "Attempting to change username from",
-        currentUserName,
-        "to",
-        req.body.userName
-      );
-
+      console.log("Checking new username:", req.body.userName);
       const existingUser = await Users.findOne({ userName: req.body.userName });
       if (existingUser) {
-        console.log("Username already taken:", req.body.userName);
-        return res.status(400).json({ message: "Username already taken." }); // ⬅️ return
+        console.log("Username already taken");
+        return res.status(400).json({ message: "Username already taken." });
       }
-
       updatedData.userName = req.body.userName;
-      console.log("✅ Username will be updated to:", req.body.userName);
+      console.log("Will update username to:", req.body.userName);
     }
 
     // 更新密码
     if (req.body.password) {
       updatedData.password = req.body.password;
-      console.log("✅ Password will be updated");
+      console.log("Will update password");
     }
 
     // 更新头像
     if (profilePicture) {
-      console.log("✅ Uploading new profile picture");
+      console.log("Uploading profile picture");
       const bucketName = process.env.AWS_BUCKET_NAME;
       const key = `${Date.now()}-${profilePicture.originalname}`;
       const command = new PutObjectCommand({
@@ -151,10 +143,10 @@ exports.updateUser = async (req, res) => {
       });
       await s3Client.send(command);
       updatedData.profilePicture = `https://${bucketName}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
-      console.log("✅ Profile picture uploaded:", updatedData.profilePicture);
+      console.log("Profile picture uploaded");
     }
 
-    console.log("Final update data:", updatedData);
+    console.log("Update data:", updatedData);
 
     // 执行更新
     const updatedUser = await Users.findOneAndUpdate(
@@ -164,18 +156,17 @@ exports.updateUser = async (req, res) => {
     );
 
     if (!updatedUser) {
-      console.log("❌ User not found:", currentUserName);
-      return res.status(404).json({ message: "User not found." }); // ⬅️ return
+      console.log("User not found");
+      return res.status(404).json({ message: "User not found." });
     }
 
-    console.log("✅ User updated successfully");
-    console.log("Updated user:", updatedUser);
+    console.log("User updated successfully:", updatedUser.userName);
     console.log("===== UPDATE USER END =====");
 
-    return res.status(200).json(updatedUser); // ⬅️ return
+    return res.status(200).json(updatedUser);
   } catch (error) {
-    console.error("❌ Error updating user:", error);
-    return res.status(500).json({ message: error.message }); // ⬅️ return
+    console.error("Error updating user:", error);
+    return res.status(500).json({ message: error.message });
   }
 };
 
