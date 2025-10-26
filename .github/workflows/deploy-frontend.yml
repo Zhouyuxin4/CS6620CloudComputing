@@ -5,13 +5,12 @@ on:
     branches:
       - main
     paths:
-      - 'client/**'  # 只有client文件夹变化时才触发
+      - 'client/**' 
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     
-    # 设置默认工作目录
     defaults:
       run:
         working-directory: client
@@ -47,6 +46,7 @@ jobs:
           aws s3 sync build/ s3://yop-frontend-prod --delete
       
       - name: Invalidate CloudFront cache (optional)
+        if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
