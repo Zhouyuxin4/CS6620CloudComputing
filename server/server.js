@@ -1,25 +1,56 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const app = express();
-const cookieParser = require("cookie-parser");
 
-let cors = require("cors");
+// 1. 最重要：先使用 cookieParser
+app.use(cookieParser());
 
+// 2. 配置 CORS - 修复版本
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3001",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    origin: function (origin, callback) {
+      // 允许的来源列表
+      const allowedOrigins = [
+        "http://localhost:3001",
+        "http://localhost:3000",
+        process.env.FRONTEND_URL,
+      ];
+
+      // 允许没有 origin 的请求（比如 mobile apps, postman）
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        console.log("Blocked by CORS:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // ⚠️ 关键设置
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+    exposedHeaders: ["Set-Cookie"],
   })
 );
 
+// 3. body parser
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(cookieParser());
+// 4. 添加调试日志中间件
+app.use((req, res, next) => {
+  console.log(`\n[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  console.log("Origin:", req.headers.origin);
+  console.log("Cookies:", req.cookies);
+  console.log("Authorization:", req.headers.authorization);
+  next();
+});
 
+// 5. 数据库连接
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -32,6 +63,7 @@ mongoose
     console.log("Error connecting to MongoDB", error.message);
   });
 
+// 6. 路由
 const userRoutes = require("./routes/userRoutes");
 const journeyRoutes = require("./routes/journeyRoutes");
 const journeyDetailRoutes = require("./routes/journeyDetailRoutes");
@@ -45,16 +77,9 @@ app.use("/friends", friendRoutes);
 app.get("/", (req, res) => {
   res.send("Welcome to the YOP API.");
 });
-// app.use(express.json());
-// const customHeadersAppLevel = function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// };
-// app.all("*", customHeadersAppLevel);
+
+// 7. 启动服务器
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
+  console.log(`FRONTEND_URL: ${process.env.FRONTEND_URL}`);
 });

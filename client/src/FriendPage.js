@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Layout from "./Layout";
 import Cookies from "js-cookie";
 import "./css/Friend.css";
-import API_BASE_URL from "./config";
+import api from "./api";
 
 function FriendPage() {
   const [keyword, setKeyword] = useState("");
@@ -19,10 +18,9 @@ function FriendPage() {
 
   const fetchFriends = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/friends/list`, {
-        withCredentials: true,
-      });
+      const response = await api.get("/friends/list");
       setFriends(response.data);
+      console.log("Friends fetched:", response.data);
     } catch (err) {
       console.error("Error fetching friends:", err);
     }
@@ -35,11 +33,10 @@ function FriendPage() {
     }
 
     try {
-      const response = await axios.get(
-        `${API_BASE_URL}/friends/search/${keyword}`,
-        { withCredentials: true }
-      );
+      console.log("Searching for:", keyword);
+      const response = await api.get(`/friends/search/${keyword}`);
       setSearchResults(response.data);
+      console.log("Search results:", response.data);
     } catch (err) {
       console.error("Error searching users:", err);
       alert("Search failed");
@@ -48,14 +45,10 @@ function FriendPage() {
 
   const handleAddFriend = async (friendId, friendName) => {
     try {
-      await axios.post(
-        `${API_BASE_URL}/friends/add/${friendId}`,
-        {},
-        { withCredentials: true }
-      );
+      await api.post(`/friends/add/${friendId}`);
       alert(`${friendName} added as friend!`);
-      fetchFriends(); // 刷新好友列表
-      setSearchResults([]); // 清空搜索结果
+      fetchFriends();
+      setSearchResults([]);
       setKeyword("");
     } catch (err) {
       console.error("Error adding friend:", err);

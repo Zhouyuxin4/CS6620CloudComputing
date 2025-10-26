@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/HomepageAfterLogin.css";
-import axios from "axios";
 import Layout from "./Layout";
 import Cookies from "js-cookie";
-import API_BASE_URL from "./config";
+import api from "./api"; // 使用新的 api
 
 function HomepageAfterLogin({ userProfile }) {
   const [userName, setUserName] = useState("");
-  const [journeys, setJourneys] = useState("");
+  const [journeys, setJourneys] = useState([]);
   const [profilePicture, setProfilePicture] = useState(null);
 
   useEffect(() => {
-    //const loginUser =localStorage.getItem('user');
     const loginUser = Cookies.get("user");
     if (loginUser) {
       const user = JSON.parse(loginUser);
@@ -25,7 +23,6 @@ function HomepageAfterLogin({ userProfile }) {
 
   const handleCreateJourney = async (e) => {
     e.preventDefault();
-    // 修改：直接读取 userName Cookie
     const userName = Cookies.get("userName");
     if (!userName) {
       console.error("No userName found");
@@ -36,11 +33,7 @@ function HomepageAfterLogin({ userProfile }) {
     const journey = { title: defaultTitle, details: defaultDetails };
     console.log("Create a new journey", journey);
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}/journeys/${userName}`,
-        journey,
-        { withCredentials: true }
-      );
+      const response = await api.post(`/journeys/${userName}`, journey);
       const journeyId = response.data._id;
       console.log("Journey created:", response.data);
       navigate(`/journey/${journeyId}`);
@@ -50,7 +43,6 @@ function HomepageAfterLogin({ userProfile }) {
   };
 
   useEffect(() => {
-    // 修改：直接读取 userName Cookie
     const userName = Cookies.get("userName");
     if (!userName) {
       console.error("No userName found");
@@ -59,10 +51,9 @@ function HomepageAfterLogin({ userProfile }) {
 
     console.log("Fetching journeys for userName:", userName);
     console.log("Token:", Cookies.get("token"));
-    axios
-      .get(`${API_BASE_URL}/journeys/${userName}`, {
-        withCredentials: true,
-      })
+
+    api
+      .get(`/journeys/${userName}`)
       .then((response) => {
         console.log("Journeys fetched:", response.data);
         setJourneys(response.data);
@@ -86,7 +77,6 @@ function HomepageAfterLogin({ userProfile }) {
   };
 
   const handleLogout = (e) => {
-    // 修改：清除所有相关 Cookie
     Cookies.remove("user");
     Cookies.remove("token");
     Cookies.remove("userName");
