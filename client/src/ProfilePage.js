@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./css/Profile.css";
 import Cookies from "js-cookie";
 import Layout from "./Layout";
-import API_BASE_URL from "./config";
+import api from "./api";
 
 function ProfilePage() {
   const [userName, setUserName] = useState("");
@@ -20,19 +19,16 @@ function ProfilePage() {
     formData.append("userName", userName);
     formData.append("password", password);
     if (profilePicture) formData.append("profilePicture", profilePicture);
+
     console.log(userName);
     console.log(password);
     for (let [key, value] of formData.entries()) {
       console.log(`${key}:`, value);
     }
+
     try {
-      const response = await axios.put(
-        `${API_BASE_URL}/users/${userName}`,
-        formData,
-        { withCredentials: true }
-      );
+      const response = await api.put(`/users/${userName}`, formData);
       const user = response.data;
-      //localStorage.setItem('user', JSON.stringify(user));
       Cookies.set("user", JSON.stringify(user));
       console.log("User profile updated:", user);
       alert("Profile updated successfully!");
@@ -42,7 +38,7 @@ function ProfilePage() {
     }
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
     const userCookie = Cookies.get("user");
     if (!userCookie) {
@@ -54,19 +50,18 @@ function ProfilePage() {
     setUserName(user.userName);
 
     console.log("delete account", { userName: user.userName });
-    axios
-      .delete(`${API_BASE_URL}/users/${user.userName}`, {
-        withCredentials: true,
-      })
-      .then(() => {
-        console.log("User account deleted.");
-        Cookies.remove("user");
-        navigate("/");
-      })
-      .catch((err) => {
-        console.error("Error deleting account:", err);
-        alert("Failed to delete account.");
-      });
+
+    try {
+      await api.delete(`/users/${user.userName}`);
+      console.log("User account deleted.");
+      Cookies.remove("user");
+      Cookies.remove("token");
+      Cookies.remove("userName");
+      navigate("/");
+    } catch (err) {
+      console.error("Error deleting account:", err);
+      alert("Failed to delete account.");
+    }
   };
 
   const handleGoBack = () => {
@@ -80,7 +75,7 @@ function ProfilePage() {
           <h1>Edit Profile</h1>
           <form onSubmit={handleSave}>
             <div>
-              <label for="userName">Name:</label>
+              <label htmlFor="userName">Name:</label>
               <input
                 className="profile-input"
                 type="text"
@@ -91,7 +86,7 @@ function ProfilePage() {
               />
             </div>
             <div>
-              <label for="password">Password:</label>
+              <label htmlFor="password">Password:</label>
               <input
                 className="profile-input"
                 type="password"
@@ -102,7 +97,7 @@ function ProfilePage() {
               />
             </div>
             <div>
-              <label for="profile-img-input">Image:</label>
+              <label htmlFor="profile-img-input">Image:</label>
               <input
                 className="profile-img-input"
                 id="profile-img-input"
@@ -110,8 +105,10 @@ function ProfilePage() {
                 onChange={(e) => setProfilePicture(e.target.files[0])}
               />
             </div>
-            <button onClick={handleSave}>Save Changes</button>
-            <button onClick={handleDelete}>Delete My Account</button>
+            <button type="submit">Save Changes</button>
+            <button type="button" onClick={handleDelete}>
+              Delete My Account
+            </button>
           </form>
           <button onClick={handleGoBack}>Back to Homepage</button>
         </div>
@@ -120,4 +117,5 @@ function ProfilePage() {
     </Layout>
   );
 }
+
 export default ProfilePage;

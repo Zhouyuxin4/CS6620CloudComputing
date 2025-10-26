@@ -5,9 +5,8 @@ import {
   Marker,
   Autocomplete,
 } from "@react-google-maps/api";
-import axios from "axios";
 import Cookies from "js-cookie";
-import API_BASE_URL from "./config";
+import api from "./api";
 
 const libraries = ["places"];
 
@@ -27,12 +26,10 @@ const MapComponent = ({ apiKey }) => {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      //const userStr = localStorage.getItem('user');
       const userStr = Cookies.get("user");
       if (userStr) {
         const userData = JSON.parse(userStr);
         setUser(userData);
-
         console.log("User data loaded:", userData);
       }
 
@@ -41,20 +38,9 @@ const MapComponent = ({ apiKey }) => {
       setJourneyId(id);
 
       try {
-        // const response = await axios.get(
-        //     `${API_BASE_URL}/details/${id}/allDetails`,
-        //     {
-        //         headers: {
-        //             Authorization: `Bearer ${localStorage.getItem('authToken')}`
-        //         }
-        //     }
-        // );
-        const response = await axios.get(
-          `${API_BASE_URL}/details/${id}/allDetails`,
-          { withCredentials: true }
-        );
+        const response = await api.get(`/details/${id}/allDetails`);
 
-        // Convert to all details to markers
+        // Convert all details to markers
         const existingMarkers = response.data.map((detail) => ({
           lat: detail.location.coordinates[1],
           lng: detail.location.coordinates[0],
@@ -81,11 +67,11 @@ const MapComponent = ({ apiKey }) => {
     lng: -123.065,
   };
 
-  // 修改：将 authToken 改为 token
-  const token = Cookies.get("token");
-  if (!token) {
-    throw new Error("No authentication token found");
-  }
+  //   // 修改：将 authToken 改为 token
+  //   const token = Cookies.get("token");
+  //   if (!token) {
+  //     throw new Error("No authentication token found");
+  //   }
 
   const handleMapClick = (event) => {
     if (selectedMarkerIndex !== null) {
@@ -203,10 +189,9 @@ const MapComponent = ({ apiKey }) => {
       }
 
       console.log("Details Information:", formData);
-      const response = await axios.post(
-        `${API_BASE_URL}/details/${journeyId}/createDetails`,
-        formData,
-        { withCredentials: true }
+      const response = await api.post(
+        `/details/${journeyId}/createDetails`,
+        formData
       );
 
       const newDetailId = response.data._id;

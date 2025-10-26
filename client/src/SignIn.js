@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/SignIn.css";
-import axios from "axios";
 import Layout from "./Layout";
 import Cookies from "js-cookie";
-import API_BASE_URL from "./config";
+import api from "./api";
 
 function SignIn() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -30,9 +29,7 @@ function SignIn() {
         formData.append("profilePicture", profilePicture);
       }
       try {
-        const response = await axios.post(`${API_BASE_URL}/users/`, formData, {
-          withCredentials: true,
-        });
+        const response = await api.post("/users/", formData);
         console.log("User created:", response.data);
         alert("Sign up successfully! Please log in.");
         navigate("/");
@@ -48,35 +45,29 @@ function SignIn() {
     } else {
       console.log("Signing in:", { userName, password });
       try {
-        const response = await axios.post(
-          `${API_BASE_URL}/users/login`,
-          { userName, password },
-          { withCredentials: true }
-        );
+        const response = await api.post("/users/login", {
+          userName,
+          password,
+        });
 
         console.log("Server response:", response.data);
 
-        // 明确提取 token 和 user
         const token = response.data.token;
         const user = response.data.user;
 
         console.log("Extracted token:", token);
         console.log("Extracted user:", user);
 
-        // 确保 token 存在
         if (!token) {
           console.error("Token is missing from server response!");
           alert("Login failed: Token not received");
           return;
         }
 
-        // 设置 Cookies（添加过期时间和路径）
-        Cookies.set("token", token, { expires: 7, path: "/" }); // 改名为 token
+        // 设置 Cookies
+        Cookies.set("token", token, { expires: 7, path: "/" });
         Cookies.set("user", JSON.stringify(user), { expires: 7, path: "/" });
         Cookies.set("userName", user.userName, { expires: 7, path: "/" });
-
-        // 设置 axios 默认 header
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
         // 验证 Cookie 是否设置成功
         console.log("Cookie token:", Cookies.get("token"));

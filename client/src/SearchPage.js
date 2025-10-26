@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./css/Search.css";
 import Layout from "./Layout";
-import API_BASE_URL from "./config";
+import api from "./api";
 
 function SearchPage() {
-  //const userName = localStorage.getItem('user.userName');
   const userName = Cookies.get("userName");
   const [keyword, setKeyword] = useState("");
   const [journeys, setJourneys] = useState([]);
@@ -15,13 +13,10 @@ function SearchPage() {
 
   const handleSearchJourney = async () => {
     try {
-      const response = await axios.get(
-        `${API_BASE_URL}/users/${userName}/search`,
-        {
-          params: { keyword },
-          withCredentials: true,
-        }
-      );
+      console.log("Searching journeys with keyword:", keyword);
+      const response = await api.get(`/users/${userName}/search`, {
+        params: { keyword },
+      });
       setJourneys(response.data);
       console.log("Journeys fetched successfully:", response.data);
     } catch (error) {

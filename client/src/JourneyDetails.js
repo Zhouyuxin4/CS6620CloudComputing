@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import MapComponent from "./MapComponent";
-import axios from "axios";
 import Layout from "./Layout";
 import Cookies from "js-cookie";
 import "./css/JourneyDetails.css";
-import API_BASE_URL from "./config";
+import api from "./api";
 
 function JourneyDetails() {
   const { id } = useParams();
@@ -63,7 +62,6 @@ function JourneyDetails() {
 
   const handleSaveEdit = async (detailId) => {
     try {
-      // 创建更新数据对象，而不是 FormData
       const updateData = {
         journalText: editForm.journalText,
       };
@@ -73,10 +71,9 @@ function JourneyDetails() {
         updateData,
       });
 
-      const response = await axios.put(
-        `${API_BASE_URL}/details/${id}/${detailId}/update`,
-        updateData, // 直接发送对象
-        { withCredentials: true }
+      const response = await api.put(
+        `/details/${id}/${detailId}/update`,
+        updateData
       );
 
       if (response.status === 200) {
@@ -93,11 +90,7 @@ function JourneyDetails() {
 
   const fetchJourneyDetails = async () => {
     try {
-      const response = await axios.get(
-        `${API_BASE_URL}/details/${id}/allDetails`,
-        { withCredentials: true }
-      );
-
+      const response = await api.get(`/details/${id}/allDetails`);
       setDetails(response.data);
       console.log("Fetched details:", response.data);
     } catch (error) {
@@ -118,7 +111,6 @@ function JourneyDetails() {
   }, [id]);
 
   const handleDeleteDetail = async (detailId) => {
-    // 添加确认提示
     const isConfirmed = window.confirm(
       "Are you sure you want to delete this stop?"
     );
@@ -128,11 +120,8 @@ function JourneyDetails() {
     }
 
     try {
-      console.log(`${API_BASE_URL}/details/${id}/${detailId}`);
-      const response = await axios.delete(
-        `${API_BASE_URL}/details/${id}/${detailId}`,
-        { withCredentials: true }
-      );
+      console.log(`Deleting detail: /details/${id}/${detailId}`);
+      const response = await api.delete(`/details/${id}/${detailId}`);
 
       if (response.status === 200) {
         alert("Stop deleted successfully");
@@ -160,19 +149,14 @@ function JourneyDetails() {
   //Update the Journey Title
   const handleUpdateJourney = async () => {
     try {
-      //Title cannot be empty
       if (!newTitle.trim()) {
         alert("Title cannot be empty");
         return;
       }
 
-      const response = await axios.put(
-        `${API_BASE_URL}/journeys/${id}`,
-        {
-          title: newTitle,
-        },
-        { withCredentials: true }
-      );
+      const response = await api.put(`/journeys/${id}`, {
+        title: newTitle,
+      });
 
       if (response.status === 200) {
         alert("Journey updated successfully");
@@ -197,11 +181,8 @@ function JourneyDetails() {
     }
 
     try {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const response = await axios.delete(
-        `${API_BASE_URL}/journeys/${user.userName}/${id}`,
-        { withCredentials: true }
-      );
+      const user = JSON.parse(Cookies.get("user")); // ⬅️ 改用 Cookies
+      const response = await api.delete(`/journeys/${user.userName}/${id}`);
 
       if (response.status === 200) {
         alert("Journey deleted successfully");
