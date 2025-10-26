@@ -9,7 +9,7 @@ let cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: process.env.FRONTEND_URL || "http://localhost:3001",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -45,16 +45,16 @@ app.use("/friends", friendRoutes);
 app.get("/", (req, res) => {
   res.send("Welcome to the YOP API.");
 });
-app.use(express.json());
-const customHeadersAppLevel = function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-};
-app.all("*", customHeadersAppLevel);
+// app.use(express.json());
+// const customHeadersAppLevel = function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// };
+// app.all("*", customHeadersAppLevel);
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
 });
