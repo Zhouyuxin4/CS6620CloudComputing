@@ -23,29 +23,25 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION_BACKEND }}  # 使用后端专用的 region
+        aws-region: ${{ secrets.AWS_REGION_BACKEND }}
     
     - name: Deploy to EC2 via SSM
       id: deploy
       run: |
-        echo "🚀 Starting backend deployment to us-east-2..."
+        echo "🚀 Starting backend deployment..."
         
         COMMAND_ID=$(aws ssm send-command \
           --instance-ids ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
           --document-name "AWS-RunShellScript" \
-          --comment "Deploy YOP Backend - Commit: ${{ github.sha }}" \
+          --comment "Deploy Backend - ${{ github.sha }}" \
           --parameters 'commands=[
-            "echo \"📦 Deployment started at $(date)\"",
-            "cd /home/ubuntu/CS6620CloudComputing/server",
-            "echo \"📥 Pulling latest code...\"",
+            "echo Deployment started at $(date)",
+            "cd /home/ubuntu/CS6620CloudComputing/server || exit 1",
             "git pull origin main",
-            "echo \"📦 Installing dependencies...\"",
             "npm install --production",
-            "echo \"🔄 Restarting application...\"",
             "pm2 restart yop-backend || pm2 start index.js --name yop-backend",
-            "echo \"✅ Deployment completed at $(date)\"",
-            "pm2 status",
-            "pm2 logs yop-backend --lines 10 --nostream"
+            "echo Deployment completed at $(date)",
+            "pm2 status"
           ]' \
           --output text \
           --query 'Command.CommandId')
@@ -58,9 +54,14 @@ jobs:
         echo "⏳ Waiting for deployment to complete..."
         sleep 20
         
+        COMMAND_ID="${{ steps.deploy.outputs.command_id }}"
+        INSTANCE_ID="${{ secrets.EC2_INSTANCE_ID_BACKEND }}"
+        
+        echo "Checking status for Command: $COMMAND_ID on Instance: $INSTANCE_ID"
+        
         STATUS=$(aws ssm get-command-invocation \
-          --command-id ${{ steps.deploy.outputs.command_id }} \
-          --instance-id ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
+          --command-id "$COMMAND_ID" \
+          --instance-id "$INSTANCE_ID" \
           --query 'Status' \
           --output text)
         
@@ -68,36 +69,46 @@ jobs:
         
         if [ "$STATUS" = "Success" ]; then
           echo "✅ Deployment successful!"
-        else
+        elif [ "$STATUS" = "InProgress" ]; then
+          echo "⏳ Still in progress, waiting..."
+          sleep 30
+          STATUS=$(aws ssm get-command-invocation \
+            --command-id "$COMMAND_ID" \
+            --instance-id "$INSTANCE_ID" \
+            --query 'Status' \
+            --output text)
+          echo "📊 Final status: $STATUS"
+        fi
+        
+        if [ "$STATUS" != "Success" ]; then
           echo "❌ Deployment failed with status: $STATUS"
           
+          echo "=== Output ==="
           aws ssm get-command-invocation \
-            --command-id ${{ steps.deploy.outputs.command_id }} \
-            --instance-id ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
+            --command-id "$COMMAND_ID" \
+            --instance-id "$INSTANCE_ID" \
             --query 'StandardOutputContent' \
             --output text
           
+          echo "=== Errors ==="
           aws ssm get-command-invocation \
-            --command-id ${{ steps.deploy.outputs.command_id }} \
-            --instance-id ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
+            --command-id "$COMMAND_ID" \
+            --instance-id "$INSTANCE_ID" \
             --query 'StandardErrorContent' \
             --output text
           
           exit 1
         fi
     
-    - name: Verify deployment
+    - name: Get deployment output
+      if: always()
       run: |
-        echo "🔍 Verifying backend deployment..."
-        INSTANCE_IP=$(aws ec2 describe-instances \
-          --instance-ids ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
-          --query 'Reservations[0].Instances[0].PublicIpAddress' \
-          --output text)
+        COMMAND_ID="${{ steps.deploy.outputs.command_id }}"
+        INSTANCE_ID="${{ secrets.EC2_INSTANCE_ID_BACKEND }}"
         
-        echo "🌐 Backend URL: http://$INSTANCE_IP:3000"
-        
-        if curl -f -s -o /dev/null -w "%{http_code}" http://$INSTANCE_IP:3000 | grep -q "200\|404"; then
-          echo "✅ Backend is responding"
-        else
-          echo "⚠️  Backend may not be fully ready yet"
-        fi
+        echo "=== Deployment Output ==="
+        aws ssm get-command-invocation \
+          --command-id "$COMMAND_ID" \
+          --instance-id "$INSTANCE_ID" \
+          --query 'StandardOutputContent' \
+          --output text
