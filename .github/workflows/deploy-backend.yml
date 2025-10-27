@@ -1,0 +1,103 @@
+name: Deploy Backend to EC2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'server/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Backend to EC2
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION_BACKEND }}  # 使用后端专用的 region
+    
+    - name: Deploy to EC2 via SSM
+      id: deploy
+      run: |
+        echo "🚀 Starting backend deployment to us-east-2..."
+        
+        COMMAND_ID=$(aws ssm send-command \
+          --instance-ids ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
+          --document-name "AWS-RunShellScript" \
+          --comment "Deploy YOP Backend - Commit: ${{ github.sha }}" \
+          --parameters 'commands=[
+            "echo \"📦 Deployment started at $(date)\"",
+            "cd /home/ubuntu/CS6620CloudComputing/server",
+            "echo \"📥 Pulling latest code...\"",
+            "git pull origin main",
+            "echo \"📦 Installing dependencies...\"",
+            "npm install --production",
+            "echo \"🔄 Restarting application...\"",
+            "pm2 restart yop-backend || pm2 start index.js --name yop-backend",
+            "echo \"✅ Deployment completed at $(date)\"",
+            "pm2 status",
+            "pm2 logs yop-backend --lines 10 --nostream"
+          ]' \
+          --output text \
+          --query 'Command.CommandId')
+        
+        echo "command_id=$COMMAND_ID" >> $GITHUB_OUTPUT
+        echo "📋 Command ID: $COMMAND_ID"
+    
+    - name: Wait for deployment
+      run: |
+        echo "⏳ Waiting for deployment to complete..."
+        sleep 20
+        
+        STATUS=$(aws ssm get-command-invocation \
+          --command-id ${{ steps.deploy.outputs.command_id }} \
+          --instance-id ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
+          --query 'Status' \
+          --output text)
+        
+        echo "📊 Deployment status: $STATUS"
+        
+        if [ "$STATUS" = "Success" ]; then
+          echo "✅ Deployment successful!"
+        else
+          echo "❌ Deployment failed with status: $STATUS"
+          
+          aws ssm get-command-invocation \
+            --command-id ${{ steps.deploy.outputs.command_id }} \
+            --instance-id ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
+            --query 'StandardOutputContent' \
+            --output text
+          
+          aws ssm get-command-invocation \
+            --command-id ${{ steps.deploy.outputs.command_id }} \
+            --instance-id ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
+            --query 'StandardErrorContent' \
+            --output text
+          
+          exit 1
+        fi
+    
+    - name: Verify deployment
+      run: |
+        echo "🔍 Verifying backend deployment..."
+        INSTANCE_IP=$(aws ec2 describe-instances \
+          --instance-ids ${{ secrets.EC2_INSTANCE_ID_BACKEND }} \
+          --query 'Reservations[0].Instances[0].PublicIpAddress' \
+          --output text)
+        
+        echo "🌐 Backend URL: http://$INSTANCE_IP:3000"
+        
+        if curl -f -s -o /dev/null -w "%{http_code}" http://$INSTANCE_IP:3000 | grep -q "200\|404"; then
+          echo "✅ Backend is responding"
+        else
+          echo "⚠️  Backend may not be fully ready yet"
+        fi
