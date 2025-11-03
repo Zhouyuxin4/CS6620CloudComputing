@@ -1,0 +1,176 @@
+(node:90349) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:90349) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5001
+FRONTEND_URL: http://yop-frontend-prod.s3-website-us-east-1.amazonaws.com
+Connected to MongoDB
+
+[2025-11-03T05:16:22.319Z] GET /
+Origin: undefined
+Cookies: [Object: null prototype] {}
+Authorization: undefined
+
+[2025-11-03T05:16:37.167Z] POST /friends/follow/674d23dd42f243b309b6a040
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:16:39.276Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:16:39.280Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:27.590Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:27.594Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:27.640Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:27.660Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:32.861Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:32.864Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:32.903Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:32.932Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:50.154Z] GET /friends/search/Renie
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:52.224Z] POST /friends/follow/674fe3fba6bfc89bdb481962
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:53.403Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:17:53.407Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y',
+  user: '{"userName":"piii","profilePicture":null}',
+  userName: 'piii'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDY1NzAsImV4cCI6MTc2MjE1MDE3MH0.pZEZ885pxYEfPCaSWWITUZDIo_kdZVE0imwXVxJJo8Y
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6

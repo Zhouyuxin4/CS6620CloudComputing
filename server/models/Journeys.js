@@ -14,6 +14,9 @@ const JourneySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'
     }
-}, {collection: 'Journeys'});
+}, {
+    collection: 'Journeys',
+    timestamps: true  // Automatically add createdAt and updatedAt fields
+});
 
 module.exports = mongoose.model('Journeys', JourneySchema);
