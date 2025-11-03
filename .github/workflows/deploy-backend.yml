@@ -40,7 +40,8 @@ jobs:
             "cd /home/ubuntu/CS6620CloudComputing/server || exit 1",
             "git pull origin main",
             "npm install --production",
-            "pm2 restart yop-backend || pm2 start index.js --name yop-backend",
+            "pm2 delete yop-backend || true",
+            "pm2 start server.js --name yop-backend",
             "echo Deployment completed at $(date)",
             "pm2 status"
           ]' \
