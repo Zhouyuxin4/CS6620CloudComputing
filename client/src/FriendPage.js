@@ -149,7 +149,7 @@ function FriendPage() {
         {/* Search and Follow Users Section */}
         <div className="search-section">
           <h2>Search & Follow Users</h2>
-          <div className="search-box">
+          <div className="friend-search-box">
             <input
               type="text"
               placeholder="Search username..."

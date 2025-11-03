@@ -178,7 +178,7 @@ function JourneyDetails() {
   };
 
   const handleGoBack = () => {
-    navigate("/homepageafterlogin");
+    navigate(-1); // Go back to previous page
   };
 
   // Update the Journey Title
@@ -202,7 +202,7 @@ function JourneyDetails() {
         alert("Journey updated successfully");
         setCurrentTitle(newTitle);
         setAddress("");
-        navigate("/homepageafterlogin");
+        // Stay on current page after updating title
       }
     } catch (error) {
       console.error("Error updating journey:", error);
@@ -231,7 +231,7 @@ function JourneyDetails() {
 
       if (response.status === 200) {
         alert("Journey deleted successfully");
-        navigate("/homepageafterlogin");
+        navigate(-1); // Go back to previous page
       }
     } catch (error) {
       console.error("Error deleting journey:", error);
@@ -410,7 +410,7 @@ function JourneyDetails() {
             </button>
           )}
           <button onClick={handleGoBack}>
-            {isOwner ? "Back to My Homepage" : "Back"}
+            ← Back
           </button>
         </div>
       </div>
