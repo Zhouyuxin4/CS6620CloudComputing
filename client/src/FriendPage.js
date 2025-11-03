@@ -92,7 +92,7 @@ function FriendPage() {
 
   // View journey details
   const handleViewJourney = (journeyId) => {
-    navigate(`/journeydetail/${journeyId}`);
+    navigate(`/journey/${journeyId}`);
   };
 
   // Format date to relative time

@@ -27,8 +27,9 @@ exports.getAllJourneys = async (req, res) => {
 //Get Journey by ID
 exports.getJourneyId = async (req, res) => {
     try {
-        // find the journey by id
-        const journey = await Journeys.findById(req.params.journeyId);
+        // find the journey by id and populate userName info
+        const journey = await Journeys.findById(req.params.journeyId)
+            .populate('userName', 'userName _id');
         // if the journey is not found, return a 404 error
         if (!journey) {
             return res.status(404).json({ message: 'Journey not found.' });

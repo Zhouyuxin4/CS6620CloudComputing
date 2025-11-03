@@ -8,13 +8,16 @@ import api from "./api";
 
 function JourneyDetails() {
   const { id } = useParams();
-  const [journey, setJourney] = useState("");
+  const [journey, setJourney] = useState(null);
+  const [journeyOwner, setJourneyOwner] = useState(null); // Store journey owner info
+  const [isOwner, setIsOwner] = useState(false); // Check if current user is owner
 
   const [newTitle, setAddress] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState(null);
   const [details, setDetails] = useState([]);
   const [userName, setUserName] = useState("");
+  const [currentUserId, setCurrentUserId] = useState(null); // Store current user ID
   const [markers, setMarkers] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -88,6 +91,20 @@ function JourneyDetails() {
     }
   };
 
+  // Fetch journey information including owner
+  const fetchJourneyInfo = async () => {
+    try {
+      const response = await api.get(`/journeys/journey/${id}`);
+      setJourney(response.data);
+      setJourneyOwner(response.data.userName);
+      setCurrentTitle(response.data.title);
+      console.log("Fetched journey:", response.data);
+    } catch (error) {
+      console.error("Error fetching journey info:", error);
+    }
+  };
+
+  // Fetch journey details (stops)
   const fetchJourneyDetails = async () => {
     try {
       const response = await api.get(`/details/${id}/allDetails`);
@@ -98,8 +115,22 @@ function JourneyDetails() {
     }
   };
 
+  // Check ownership when journey and user info are loaded
+  useEffect(() => {
+    if (journeyOwner && currentUserId) {
+      const isUserOwner = journeyOwner._id === currentUserId;
+      setIsOwner(isUserOwner);
+      console.log("Ownership check:", {
+        journeyOwnerId: journeyOwner._id,
+        currentUserId,
+        isOwner: isUserOwner,
+      });
+    }
+  }, [journeyOwner, currentUserId]);
+
   useEffect(() => {
     if (id) {
+      fetchJourneyInfo();
       fetchJourneyDetails();
     }
 
@@ -107,6 +138,7 @@ function JourneyDetails() {
     if (loginUser) {
       const user = JSON.parse(loginUser);
       setUserName(user.userName);
+      setCurrentUserId(user.userId);
     }
   }, [id]);
 
@@ -146,8 +178,13 @@ function JourneyDetails() {
     navigate("/homepageafterlogin");
   };
 
-  //Update the Journey Title
+  // Update the Journey Title
   const handleUpdateJourney = async () => {
+    if (!isOwner) {
+      alert("You don't have permission to edit this journey");
+      return;
+    }
+
     try {
       if (!newTitle.trim()) {
         alert("Title cannot be empty");
@@ -170,8 +207,13 @@ function JourneyDetails() {
     }
   };
 
-  //Delete The Journey
+  // Delete The Journey
   const handleDeleteJourney = async () => {
+    if (!isOwner) {
+      alert("You don't have permission to delete this journey");
+      return;
+    }
+
     const isConfirmed = window.confirm(
       "Are you sure you want to delete this journey?"
     );
@@ -181,7 +223,7 @@ function JourneyDetails() {
     }
 
     try {
-      const user = JSON.parse(Cookies.get("user")); // ⬅️ 改用 Cookies
+      const user = JSON.parse(Cookies.get("user"));
       const response = await api.delete(`/journeys/${user.userName}/${id}`);
 
       if (response.status === 200) {
@@ -197,21 +239,33 @@ function JourneyDetails() {
   return (
     <Layout userName={userName}>
       <div className="journey-details">
-        <h1>Details of {currentTitle}</h1>
-        <form className="journey-update-box" onSubmit={handleSubmit}>
-          <div>
-            <input
-              className="journey-update-title"
-              type="text"
-              placeholder="edit your journey title here"
-              value={newTitle}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </div>
+        <h1>
+          Details of {currentTitle}
+          {journeyOwner && (
+            <span className="journey-author">
+              {" "}
+              by {journeyOwner.userName}
+            </span>
+          )}
+        </h1>
 
-          <button onClick={handleUpdateJourney}>Update Journey Title</button>
-        </form>
+        {/* Only show edit form if user is owner */}
+        {isOwner && (
+          <form className="journey-update-box" onSubmit={handleSubmit}>
+            <div>
+              <input
+                className="journey-update-title"
+                type="text"
+                placeholder="edit your journey title here"
+                value={newTitle}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </div>
+
+            <button onClick={handleUpdateJourney}>Update Journey Title</button>
+          </form>
+        )}
 
         <div className="details-container">
           <MapComponent apiKey="AIzaSyBvjss2rrxy8HRCt-Yu6dnKRoUpX35wKh8" />
@@ -294,39 +348,42 @@ function JourneyDetails() {
                     )}
                   </div>
 
-                  <div className="detail-actions">
-                    {editingDetailId === detail._id ? (
-                      <>
-                        <button
-                          className="save-button"
-                          onClick={() => handleSaveEdit(detail._id)}
-                        >
-                          Save
-                        </button>
-                        <button
-                          className="cancel-button"
-                          onClick={handleCancelEdit}
-                        >
-                          Cancel
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          className="edit-button"
-                          onClick={() => handleStartEdit(detail)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="delete-button"
-                          onClick={() => handleDeleteDetail(detail._id)}
-                        >
-                          Delete
-                        </button>
-                      </>
-                    )}
-                  </div>
+                  {/* Only show edit/delete buttons if user is owner */}
+                  {isOwner && (
+                    <div className="detail-actions">
+                      {editingDetailId === detail._id ? (
+                        <>
+                          <button
+                            className="save-button"
+                            onClick={() => handleSaveEdit(detail._id)}
+                          >
+                            Save
+                          </button>
+                          <button
+                            className="cancel-button"
+                            onClick={handleCancelEdit}
+                          >
+                            Cancel
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className="edit-button"
+                            onClick={() => handleStartEdit(detail)}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="delete-button"
+                            onClick={() => handleDeleteDetail(detail._id)}
+                          >
+                            Delete
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </div>
               ))
             ) : (
@@ -337,13 +394,18 @@ function JourneyDetails() {
         <h3></h3>
 
         <div className="detail-button">
-          <button
-            className="delete-journey-button"
-            onClick={handleDeleteJourney}
-          >
-            Delete Journey
+          {/* Only show delete journey button if user is owner */}
+          {isOwner && (
+            <button
+              className="delete-journey-button"
+              onClick={handleDeleteJourney}
+            >
+              Delete Journey
+            </button>
+          )}
+          <button onClick={handleGoBack}>
+            {isOwner ? "Back to My Homepage" : "Back"}
           </button>
-          <button onClick={handleGoBack}>Back to My Homepage</button>
         </div>
       </div>
     </Layout>
