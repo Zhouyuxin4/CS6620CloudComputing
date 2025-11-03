@@ -11,6 +11,7 @@ function FriendPage() {
   const [following, setFollowing] = useState([]);
   const [followingJourneys, setFollowingJourneys] = useState([]);
   const [followingIds, setFollowingIds] = useState(new Set());
+  const [selectedUserId, setSelectedUserId] = useState(null); // Filter by selected user
   const userName = Cookies.get("userName");
   const navigate = useNavigate();
 
@@ -111,6 +112,25 @@ function FriendPage() {
     return date.toLocaleDateString();
   };
 
+  // Toggle filter by user - click to filter, click again to show all
+  const handleUserFilter = (userId) => {
+    if (selectedUserId === userId) {
+      setSelectedUserId(null); // Clear filter if clicking same user
+    } else {
+      setSelectedUserId(userId); // Set filter to this user
+    }
+  };
+
+  // Get filtered journeys based on selected user
+  const getFilteredJourneys = () => {
+    if (!selectedUserId) {
+      return followingJourneys; // Show all if no filter
+    }
+    return followingJourneys.filter(
+      (journey) => journey.userName?._id === selectedUserId
+    );
+  };
+
   const handleGoBack = () => {
     navigate("/homepageafterlogin");
   };
@@ -170,17 +190,29 @@ function FriendPage() {
 
           {/* Following List */}
           <div className="following-list">
-            <h3>Following ({following.length})</h3>
+            <h3>
+              Following ({following.length})
+              {selectedUserId && (
+                <span className="filter-hint"> - Click again to show all</span>
+              )}
+            </h3>
             {following.length > 0 ? (
               <div className="following-avatars">
                 {following.map((user) => (
-                  <div key={user._id} className="following-item">
+                  <div
+                    key={user._id}
+                    className={`following-item ${
+                      selectedUserId === user._id ? "selected" : ""
+                    }`}
+                    onClick={() => handleUserFilter(user._id)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <img
                       src={
                         user.profilePicture || "https://via.placeholder.com/40"
                       }
                       alt={user.userName}
-                      title={user.userName}
+                      title={`Click to filter ${user.userName}'s posts`}
                     />
                     <span>{user.userName}</span>
                   </div>
@@ -194,10 +226,23 @@ function FriendPage() {
 
         {/* Feed from Followed Users */}
         <div className="feed-section">
-          <h2>Feed from People You Follow</h2>
-          {followingJourneys.length > 0 ? (
+          <h2>
+            Feed from People You Follow
+            {selectedUserId && (
+              <span className="filter-active">
+                {" "}
+                (Filtered by{" "}
+                {
+                  following.find((user) => user._id === selectedUserId)
+                    ?.userName
+                }
+                )
+              </span>
+            )}
+          </h2>
+          {getFilteredJourneys().length > 0 ? (
             <div className="journeys-feed">
-              {followingJourneys.map((journey) => (
+              {getFilteredJourneys().map((journey) => (
                 <div key={journey._id} className="journey-card">
                   <div className="journey-header">
                     <img
@@ -232,8 +277,17 @@ function FriendPage() {
             </div>
           ) : (
             <div className="no-feed">
-              <p>No journeys yet from people you follow.</p>
-              <p>Follow more users to see their adventures!</p>
+              {selectedUserId ? (
+                <>
+                  <p>No journeys from this user yet.</p>
+                  <p>Click their avatar again to see all posts.</p>
+                </>
+              ) : (
+                <>
+                  <p>No journeys yet from people you follow.</p>
+                  <p>Follow more users to see their adventures!</p>
+                </>
+              )}
             </div>
           )}
         </div>
