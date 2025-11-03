@@ -1,0 +1,77 @@
+name: Hard Restart Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hard-restart:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+    
+    - name: Hard restart
+      id: restart
+      run: |
+        COMMAND_ID=$(aws ssm send-command \
+          --instance-ids i-0178c29bf15b3e26c \
+          --document-name "AWS-RunShellScript" \
+          --comment "Hard Restart Server" \
+          --parameters 'commands=[
+            "echo === Stopping PM2 ===",
+            "pm2 stop all",
+            "pm2 delete all",
+            "echo === Updating code ===",
+            "cd /home/ubuntu/CS6620CloudComputing",
+            "sudo chown -R root:root .",
+            "git fetch origin main",
+            "git reset --hard origin/main",
+            "git clean -fd",
+            "echo === Current commit ===",
+            "git log -1 --oneline",
+            "sudo chown -R github-deploy:github-deploy .",
+            "echo === Clearing node cache ===",
+            "cd server",
+            "rm -rf node_modules",
+            "npm cache clean --force",
+            "npm install --production",
+            "echo === Starting fresh PM2 ===",
+            "pm2 start server.js --name yop-backend",
+            "sleep 3",
+            "echo === PM2 Status ===",
+            "pm2 list",
+            "echo === PM2 Logs (last 30 lines) ===",
+            "pm2 logs yop-backend --nostream --lines 30",
+            "echo === Testing API locally ===",
+            "curl -s http://localhost:3000/",
+            "curl -s http://localhost:3000/friends/following || echo \"Friends route failed\""
+          ]' \
+          --output text \
+          --query 'Command.CommandId')
+        
+        echo "command_id=$COMMAND_ID" >> $GITHUB_OUTPUT
+    
+    - name: Wait and get output
+      run: |
+        sleep 20
+        
+        COMMAND_ID="${{ steps.restart.outputs.command_id }}"
+        
+        aws ssm get-command-invocation \
+          --command-id "$COMMAND_ID" \
+          --instance-id "i-0178c29bf15b3e26c" \
+          --query 'StandardOutputContent' \
+          --output text
+        
+        echo "=== Errors ==="
+        aws ssm get-command-invocation \
+          --command-id "$COMMAND_ID" \
+          --instance-id "i-0178c29bf15b3e26c" \
+          --query 'StandardErrorContent' \
+          --output text || echo "No errors"
+
