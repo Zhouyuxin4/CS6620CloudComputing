@@ -23,14 +23,14 @@ jobs:
           --document-name "AWS-RunShellScript" \
           --comment "Check PM2 Logs" \
           --parameters 'commands=[
-            "echo === PM2 Logs (last 50 lines) ===",
+            "echo === PM2 Logs last 50 lines ===",
             "pm2 logs yop-backend --nostream --lines 50",
-            "echo === Server.js content (route registration) ===",
-            "cat /home/ubuntu/CS6620CloudComputing/server/server.js | grep -A3 -B3 friends",
-            "echo === FriendsRoutes.js content (first 30 lines) ===",
+            "echo === Server.js friends route ===",
+            "grep -A3 -B3 friends /home/ubuntu/CS6620CloudComputing/server/server.js",
+            "echo === FriendsRoutes.js first 30 lines ===",
             "head -30 /home/ubuntu/CS6620CloudComputing/server/routes/friendsRoutes.js",
-            "echo === Testing route locally ===",
-            "curl -s http://localhost:3000/friends/following || echo \"Local request failed\""
+            "echo === Test API locally ===",
+            "curl -s http://localhost:3000/friends/following"
           ]' \
           --output text \
           --query 'Command.CommandId')
