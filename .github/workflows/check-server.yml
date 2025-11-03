@@ -1,0 +1,62 @@
+name: Check Server Status
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+    
+    - name: Check server files
+      id: check
+      run: |
+        COMMAND_ID=$(aws ssm send-command \
+          --instance-ids i-0178c29bf15b3e26c \
+          --document-name "AWS-RunShellScript" \
+          --comment "Check Server Files" \
+          --parameters 'commands=[
+            "echo === Routes Directory ===",
+            "ls -la /home/ubuntu/CS6620CloudComputing/server/routes/",
+            "echo === friendsRoutes.js exists? ===",
+            "test -f /home/ubuntu/CS6620CloudComputing/server/routes/friendsRoutes.js && echo \"YES - File EXISTS\" || echo \"NO - File NOT FOUND\"",
+            "echo === Current Git Commit ===",
+            "cd /home/ubuntu/CS6620CloudComputing && sudo -u github-deploy git log -1",
+            "echo === server.js content (friends route registration) ===",
+            "grep -A2 -B2 friends /home/ubuntu/CS6620CloudComputing/server/server.js || echo \"friends not found in server.js\"",
+            "echo === PM2 Status ===",
+            "pm2 list"
+          ]' \
+          --output text \
+          --query 'Command.CommandId')
+        
+        echo "command_id=$COMMAND_ID" >> $GITHUB_OUTPUT
+        echo "Command ID: $COMMAND_ID"
+    
+    - name: Wait and get output
+      run: |
+        sleep 10
+        
+        COMMAND_ID="${{ steps.check.outputs.command_id }}"
+        
+        echo "=== Command Output ==="
+        aws ssm get-command-invocation \
+          --command-id "$COMMAND_ID" \
+          --instance-id "i-0178c29bf15b3e26c" \
+          --query 'StandardOutputContent' \
+          --output text
+        
+        echo "=== Command Errors ==="
+        aws ssm get-command-invocation \
+          --command-id "$COMMAND_ID" \
+          --instance-id "i-0178c29bf15b3e26c" \
+          --query 'StandardErrorContent' \
+          --output text || echo "No errors"
+
