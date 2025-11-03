@@ -3,6 +3,14 @@ body, html {
     padding: 0;
   }
 
+/* Journey Author Info */
+.journey-author {
+    font-size: 0.6em;
+    color: #667eea;
+    font-weight: 500;
+    font-style: italic;
+}
+
 .detail-item {
     border: 1px solid #ddd;
     border-radius: 8px;

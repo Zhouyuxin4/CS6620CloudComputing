@@ -78,7 +78,11 @@ exports.login = async (req, res) => {
     });
     res.status(200).json({
       token,
-      user: { userName: user.userName, profilePicture: user.profilePicture },
+      user: { 
+        id: user._id,
+        userName: user.userName, 
+        profilePicture: user.profilePicture 
+      },
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
