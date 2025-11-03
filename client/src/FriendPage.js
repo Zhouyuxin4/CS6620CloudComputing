@@ -62,6 +62,12 @@ function FriendPage() {
     }
   };
 
+  // Close search results
+  const handleCloseSearch = () => {
+    setSearchResults([]);
+    setKeyword("");
+  };
+
   // Follow a user
   const handleFollow = async (userId, userName) => {
     try {
@@ -157,7 +163,12 @@ function FriendPage() {
           {/* Search Results */}
           {searchResults.length > 0 && (
             <div className="search-results">
-              <h3>Search Results:</h3>
+              <div className="search-results-header">
+                <h3>Search Results:</h3>
+                <button className="btn-close-search" onClick={handleCloseSearch}>
+                  ✕ Close
+                </button>
+              </div>
               {searchResults.map((user) => (
                 <div key={user._id} className="user-card">
                   <img

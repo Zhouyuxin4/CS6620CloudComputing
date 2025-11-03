@@ -580,3 +580,771 @@ Cookies: {
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
 ✅ Token found in Cookie
 ✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:42:58.072Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:42:58.074Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:42:58.117Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:42:58.136Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:15.110Z] GET /journeys/piii
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:15.154Z] GET /journeys/piii
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:32.744Z] GET /users/piii/search
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:34.387Z] GET /users/piii/search
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:34.695Z] GET /users/piii/search
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:38.179Z] GET /users/piii/search
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:42.744Z] GET /details/69083f83cbf44faa687a06bf/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:42.746Z] GET /journeys/journey/69083f83cbf44faa687a06bf
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:42.773Z] GET /details/69083f83cbf44faa687a06bf/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:42.793Z] GET /journeys/journey/69083f83cbf44faa687a06bf
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:42.795Z] GET /details/69083f83cbf44faa687a06bf/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:42.820Z] GET /details/69083f83cbf44faa687a06bf/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:46.710Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:46.713Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:46.803Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:46.828Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:48.664Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:48.667Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:48.709Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:43:48.727Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:58:18.474Z] GET /journeys/piii
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:58:18.559Z] GET /journeys/piii
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:58:57.941Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:58:57.943Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:58:57.988Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T05:58:58.048Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:19.114Z] GET /friends/search/pi
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:26.559Z] POST /friends/follow/6742c131c20c2b14bca30635
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:27.799Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:27.801Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:35.243Z] GET /details/674d244542f243b309b6a071/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:35.246Z] GET /journeys/journey/674d244542f243b309b6a071
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:35.268Z] GET /details/674d244542f243b309b6a071/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:35.286Z] GET /journeys/journey/674d244542f243b309b6a071
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:35.288Z] GET /details/674d244542f243b309b6a071/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:02:35.308Z] GET /details/674d244542f243b309b6a071/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:03:23.639Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:03:23.641Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:03:23.688Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:03:23.705Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:05:22.303Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:05:22.304Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:05:22.344Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:05:22.364Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:09:34.025Z] GET /friends/search/%E5%98%BB%E5%98%BB
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:09:36.003Z] GET /friends/search/%E5%98%BB%E5%98%BB
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:09:39.050Z] GET /friends/search/%E5%93%88%E5%93%88
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:09:45.959Z] GET /friends/search/%E4%BD%A9%E4%BD%A9
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:10:48.398Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:10:48.400Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:11:04.409Z] GET /friends/following
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:11:04.410Z] GET /friends/following/journeys
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:12:21.442Z] GET /details/674fe5b3a6bfc89bdb48199b/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:12:21.445Z] GET /journeys/journey/674fe5b3a6bfc89bdb48199b
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:12:21.469Z] GET /details/674fe5b3a6bfc89bdb48199b/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:12:21.489Z] GET /journeys/journey/674fe5b3a6bfc89bdb48199b
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:12:21.490Z] GET /details/674fe5b3a6bfc89bdb48199b/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:12:21.509Z] GET /details/674fe5b3a6bfc89bdb48199b/allDetails
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:12:24.270Z] GET /journeys/piii
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
+
+[2025-11-03T06:12:24.313Z] GET /journeys/piii
+Origin: http://localhost:3000
+Cookies: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI',
+  user: '{"id":"690838ff7730c7c1b745edd6","userName":"piii","profilePicture":null}',
+  userName: 'piii',
+  currentDetailId: '69084083c370bd29f40811f0'
+}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTA4MzhmZjc3MzBjN2MxYjc0NWVkZDYiLCJpYXQiOjE3NjIxNDg0NzYsImV4cCI6MTc2MjE1MjA3Nn0.YHA1uNMnkphiWGnwOfKOmdVjj2MziRF5VBX9j6ze0rI
+✅ Token found in Cookie
+✅ Token verified, userId: 690838ff7730c7c1b745edd6
