@@ -37,8 +37,9 @@ jobs:
           --comment "Deploy Backend - ${{ github.sha }}" \
           --parameters 'commands=[
             "echo Deployment started at $(date)",
-            "cd /home/ubuntu/CS6620CloudComputing/server || exit 1",
+            "cd /home/ubuntu/CS6620CloudComputing || exit 1",
             "git pull origin main",
+            "cd server || exit 1",
             "npm install --production",
             "pm2 delete yop-backend || true",
             "pm2 start server.js --name yop-backend",
