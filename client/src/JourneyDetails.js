@@ -138,7 +138,10 @@ function JourneyDetails() {
     if (loginUser) {
       const user = JSON.parse(loginUser);
       setUserName(user.userName);
-      setCurrentUserId(user.userId);
+      // Try different possible ID field names
+      const userId = user.userId || user.id || user._id;
+      setCurrentUserId(userId);
+      console.log("Current user from cookie:", { user, userId });
     }
   }, [id]);
 
@@ -268,7 +271,10 @@ function JourneyDetails() {
         )}
 
         <div className="details-container">
-          <MapComponent apiKey="AIzaSyBvjss2rrxy8HRCt-Yu6dnKRoUpX35wKh8" />
+          <MapComponent 
+            apiKey="AIzaSyBvjss2rrxy8HRCt-Yu6dnKRoUpX35wKh8" 
+            isOwner={isOwner}
+          />
 
           <div className="details-list">
             {details.length > 0 ? (

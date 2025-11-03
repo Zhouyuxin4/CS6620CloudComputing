@@ -10,7 +10,7 @@ import api from "./api";
 
 const libraries = ["places"];
 
-const MapComponent = ({ apiKey }) => {
+const MapComponent = ({ apiKey, isOwner = false }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: apiKey,
     libraries,
@@ -67,13 +67,13 @@ const MapComponent = ({ apiKey }) => {
     lng: -123.065,
   };
 
-  //   // 修改：将 authToken 改为 token
-  //   const token = Cookies.get("token");
-  //   if (!token) {
-  //     throw new Error("No authentication token found");
-  //   }
-
+  // Handle map click - only allow if user is owner
   const handleMapClick = (event) => {
+    // Block interaction if not owner
+    if (!isOwner) {
+      return;
+    }
+
     if (selectedMarkerIndex !== null) {
       return;
     }
@@ -97,31 +97,46 @@ const MapComponent = ({ apiKey }) => {
   };
 
   const handleMarkerClick = (index) => {
-    // 如果点击的是已经选中的 marker，取消选中
+    // Only allow interaction if user is owner
+    if (!isOwner) {
+      return;
+    }
+
+    // If clicking on already selected marker, deselect it
     if (index === selectedMarkerIndex) {
       setSelectedMarkerIndex(null);
     } else {
-      // 否则选中点击的 marker
+      // Otherwise select the clicked marker
       setSelectedMarkerIndex(index);
     }
   };
 
   const handleMapClickOutside = (event) => {
-    // 确保点击的不是 marker
+    // Only allow if user is owner
+    if (!isOwner) {
+      return;
+    }
+
+    // Ensure it's not a marker click
     if (event.placeId || event.feature) {
       return;
     }
 
-    // 如果没有选中的 marker，才创建新的
+    // If no marker is selected, create new one
     if (selectedMarkerIndex === null) {
       handleMapClick(event);
     } else {
-      // 否则取消选中
+      // Otherwise deselect
       setSelectedMarkerIndex(null);
     }
   };
 
   const onPlaceChanged = () => {
+    // Only allow if user is owner
+    if (!isOwner) {
+      return;
+    }
+
     if (autocomplete !== null) {
       const place = autocomplete.getPlace();
       const location = {
@@ -133,23 +148,11 @@ const MapComponent = ({ apiKey }) => {
   };
 
   const handleTitleChange = (index, value) => {
+    if (!isOwner) return; // Only owner can edit
     const updatedMarkers = [...markers];
     updatedMarkers[index].title = value;
     setMarkers(updatedMarkers);
   };
-
-  // const handleImageUpload = (index, event) => {
-  //     const file = event.target.files[0];
-  //     if (file) {
-  //         const reader = new FileReader();
-  //         reader.onloadend = () => {
-  //             const updatedMarkers = [...markers];
-  //             updatedMarkers[index].image = reader.result;
-  //             setMarkers(updatedMarkers);
-  //         };
-  //         reader.readAsDataURL(file);
-  //     }
-  // };
 
   const handleSave = async (index) => {
     const marker = markers[index];
@@ -237,10 +240,6 @@ const MapComponent = ({ apiKey }) => {
           key={index}
           position={{ lat: marker.lat, lng: marker.lng }}
           onClick={() => handleMarkerClick(index)}
-          // icon={marker.saved ? {
-          //     url: 'path_to_saved_marker_icon',  // 可选：使用不同的图标
-          //     scaledSize: new window.google.maps.Size(30, 30)
-          // } : undefined}
         />
       ))}
 
@@ -345,28 +344,31 @@ const MapComponent = ({ apiKey }) => {
         </div>
       )}
 
-      <Autocomplete
-        onLoad={(autocomplete) => setAutocomplete(autocomplete)}
-        onPlaceChanged={onPlaceChanged}
-      >
-        <input
-          type="text"
-          placeholder="Search location"
-          style={{
-            boxSizing: "border-box",
-            border: "1px solid transparent",
-            width: "240px",
-            height: "32px",
-            padding: "0 12px",
-            borderRadius: "3px",
-            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
-            fontSize: "14px",
-            position: "absolute",
-            left: "50%",
-            marginLeft: "-120px",
-          }}
-        />
-      </Autocomplete>
+      {/* Only show search box if user is owner */}
+      {isOwner && (
+        <Autocomplete
+          onLoad={(autocomplete) => setAutocomplete(autocomplete)}
+          onPlaceChanged={onPlaceChanged}
+        >
+          <input
+            type="text"
+            placeholder="Search location"
+            style={{
+              boxSizing: "border-box",
+              border: "1px solid transparent",
+              width: "240px",
+              height: "32px",
+              padding: "0 12px",
+              borderRadius: "3px",
+              boxShadow: "0 2px 6px rgba(0, 0, 0, 0.3)",
+              fontSize: "14px",
+              position: "absolute",
+              left: "50%",
+              marginLeft: "-120px",
+            }}
+          />
+        </Autocomplete>
+      )}
     </GoogleMap>
   );
 };
