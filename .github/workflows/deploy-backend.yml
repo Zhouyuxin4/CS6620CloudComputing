@@ -5,116 +5,118 @@ on:
     branches:
       - main
     paths:
-      - 'server/**'
-      - '.github/workflows/deploy-backend.yml'
+      - "server/**"
+      - ".github/workflows/deploy-backend.yml"
   workflow_dispatch:
 
 jobs:
   deploy:
     name: Deploy Backend to EC2
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2  # 直接写死区域
-    
-    - name: Deploy to EC2 via SSM
-      id: deploy
-      run: |
-        echo "🚀 Starting backend deployment..."
-        
-        # 使用 EC2_INSTANCE_ID 而不是 EC2_INSTANCE_ID_BACKEND
-        COMMAND_ID=$(aws ssm send-command \
-          --instance-ids i-0178c29bf15b3e26c \
-          --document-name "AWS-RunShellScript" \
-          --comment "Deploy Backend - ${{ github.sha }}" \
-          --parameters 'commands=[
-            "echo Deployment started at $(date)",
-            "echo === Running as github-deploy user ===",
-            "sudo -u github-deploy bash -c '\''cd /home/ubuntu/CS6620CloudComputing && git fetch origin main && git reset --hard origin/main && git log -1 --oneline'\''",
-            "echo === Git update completed ===",
-            "cd /home/ubuntu/CS6620CloudComputing/server || exit 1",
-            "echo === Installing dependencies ===",
-            "npm install --production",
-            "echo === Restarting PM2 ===",
-            "pm2 delete yop-backend || true",
-            "pm2 start server.js --name yop-backend",
-            "echo Deployment completed at $(date)",
-            "pm2 status"
-          ]' \
-          --output text \
-          --query 'Command.CommandId')
-        
-        echo "command_id=$COMMAND_ID" >> $GITHUB_OUTPUT
-        echo "📋 Command ID: $COMMAND_ID"
-    
-    - name: Wait for deployment
-      run: |
-        echo "⏳ Waiting for deployment to complete..."
-        sleep 25
-        
-        COMMAND_ID="${{ steps.deploy.outputs.command_id }}"
-        INSTANCE_ID="i-0178c29bf15b3e26c"
-        
-        echo "Checking status for Command: $COMMAND_ID on Instance: $INSTANCE_ID"
-        
-        STATUS=$(aws ssm get-command-invocation \
-          --command-id "$COMMAND_ID" \
-          --instance-id "$INSTANCE_ID" \
-          --query 'Status' \
-          --output text)
-        
-        echo "📊 Deployment status: $STATUS"
-        
-        if [ "$STATUS" = "Success" ]; then
-          echo "✅ Deployment successful!"
-        elif [ "$STATUS" = "InProgress" ]; then
-          echo "⏳ Still in progress, waiting more..."
-          sleep 30
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Deploy to EC2 via SSM
+        id: deploy
+        run: |
+          echo "🚀 Starting backend deployment..."
+
+          COMMAND_ID=$(aws ssm send-command \
+            --instance-ids i-0178c29bf15b3e26c \
+            --document-name "AWS-RunShellScript" \
+            --comment "Deploy Backend - ${{ github.sha }}" \
+            --parameters 'commands=[
+              "echo Deployment started at $(date)",
+              "echo === Running as ubuntu user ===",
+              "cd /home/ubuntu/CS6620CloudComputing || exit 1",
+              "sudo -u ubuntu git fetch origin main",
+              "sudo -u ubuntu git reset --hard origin/main",
+              "sudo -u ubuntu git log -1 --oneline",
+              "echo === Git update completed ===",
+              "cd /home/ubuntu/CS6620CloudComputing/server || exit 1",
+              "echo === Installing dependencies ===",
+              "sudo -u ubuntu npm install --production",
+              "echo === Restarting PM2 ===",
+              "sudo -u ubuntu pm2 restart yop-backend || sudo -u ubuntu pm2 start server.js --name yop-backend",
+              "sudo -u ubuntu pm2 save",
+              "echo Deployment completed at $(date)",
+              "sudo -u ubuntu pm2 status"
+            ]' \
+            --output text \
+            --query 'Command.CommandId')
+
+          echo "command_id=$COMMAND_ID" >> $GITHUB_OUTPUT
+          echo "📋 Command ID: $COMMAND_ID"
+
+      - name: Wait for deployment
+        run: |
+          echo "⏳ Waiting for deployment to complete..."
+          sleep 25
+
+          COMMAND_ID="${{ steps.deploy.outputs.command_id }}"
+          INSTANCE_ID="i-0178c29bf15b3e26c"
+
+          echo "Checking status for Command: $COMMAND_ID on Instance: $INSTANCE_ID"
+
           STATUS=$(aws ssm get-command-invocation \
             --command-id "$COMMAND_ID" \
             --instance-id "$INSTANCE_ID" \
             --query 'Status' \
             --output text)
-          echo "📊 Final status: $STATUS"
-        fi
-        
-        if [ "$STATUS" != "Success" ]; then
-          echo "❌ Deployment failed with status: $STATUS"
-          
-          echo "=== Output ==="
+
+          echo "📊 Deployment status: $STATUS"
+
+          if [ "$STATUS" = "Success" ]; then
+            echo "✅ Deployment successful!"
+          elif [ "$STATUS" = "InProgress" ]; then
+            echo "⏳ Still in progress, waiting more..."
+            sleep 30
+            STATUS=$(aws ssm get-command-invocation \
+              --command-id "$COMMAND_ID" \
+              --instance-id "$INSTANCE_ID" \
+              --query 'Status' \
+              --output text)
+            echo "📊 Final status: $STATUS"
+          fi
+
+          if [ "$STATUS" != "Success" ]; then
+            echo "❌ Deployment failed with status: $STATUS"
+            
+            echo "=== Output ==="
+            aws ssm get-command-invocation \
+              --command-id "$COMMAND_ID" \
+              --instance-id "$INSTANCE_ID" \
+              --query 'StandardOutputContent' \
+              --output text || echo "No output"
+            
+            echo "=== Errors ==="
+            aws ssm get-command-invocation \
+              --command-id "$COMMAND_ID" \
+              --instance-id "$INSTANCE_ID" \
+              --query 'StandardErrorContent' \
+              --output text || echo "No errors"
+            
+            exit 1
+          fi
+
+      - name: Get deployment output
+        if: always()
+        run: |
+          COMMAND_ID="${{ steps.deploy.outputs.command_id }}"
+          INSTANCE_ID="i-0178c29bf15b3e26c"
+
+          echo "=== Full Deployment Output ==="
           aws ssm get-command-invocation \
             --command-id "$COMMAND_ID" \
             --instance-id "$INSTANCE_ID" \
             --query 'StandardOutputContent' \
-            --output text || echo "No output"
-          
-          echo "=== Errors ==="
-          aws ssm get-command-invocation \
-            --command-id "$COMMAND_ID" \
-            --instance-id "$INSTANCE_ID" \
-            --query 'StandardErrorContent' \
-            --output text || echo "No errors"
-          
-          exit 1
-        fi
-    
-    - name: Get deployment output
-      if: always()
-      run: |
-        COMMAND_ID="${{ steps.deploy.outputs.command_id }}"
-        INSTANCE_ID="i-0178c29bf15b3e26c"
-        
-        echo "=== Full Deployment Output ==="
-        aws ssm get-command-invocation \
-          --command-id "$COMMAND_ID" \
-          --instance-id "$INSTANCE_ID" \
-          --query 'StandardOutputContent' \
-          --output text || echo "No output available"
+            --output text || echo "No output available"
