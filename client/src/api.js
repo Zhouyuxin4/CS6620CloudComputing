@@ -2,14 +2,14 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-// 从环境变量读取 API URL
+// read environment variable for API base URL
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
-// 创建 axios 实例
+// create axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true, // 非常重要!允许跨域请求携带 Cookie
-  timeout: 10000, // 10秒超时
+  withCredentials: true, // very important! allow cross-origin requests to carry cookies
+  timeout: 10000, // 10 seconds timeout
 });
 
 // 请求拦截器:在每个请求中添加 token 到 header
