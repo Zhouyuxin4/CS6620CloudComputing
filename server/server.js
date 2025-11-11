@@ -78,7 +78,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the YOP API.");
 });
 
-// 7. 启动服务器
+// activate server
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
   console.log(`FRONTEND_URL: ${process.env.FRONTEND_URL}`);
