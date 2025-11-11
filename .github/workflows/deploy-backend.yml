@@ -36,18 +36,24 @@ jobs:
             --comment "Deploy Backend - ${{ github.sha }}" \
             --parameters 'commands=[
               "echo Deployment started at $(date)",
-              "echo === Deploying as github-deploy user ===",
-              "echo === Syncing code from ubuntu home to production ===",
+              "echo === Step 1: Pulling latest code from GitHub ===",
+              "cd /home/ubuntu/CS6620CloudComputing || exit 1",
+              "sudo -u ubuntu git fetch origin main",
+              "sudo -u ubuntu git reset --hard origin/main",
+              "sudo -u ubuntu git clean -fd",
+              "echo Current commit: $(git rev-parse HEAD)",
+              "echo === Step 2: Syncing code to production directory ===",
               "rsync -av --delete /home/ubuntu/CS6620CloudComputing/server/ /opt/yop-backend/",
               "chown -R github-deploy:github-deploy /opt/yop-backend",
-              "echo === Installing dependencies ===",
+              "echo === Step 3: Installing dependencies ===",
               "cd /opt/yop-backend || exit 1",
               "sudo -u github-deploy npm install --production",
-              "echo === Restarting PM2 ===",
+              "echo === Step 4: Restarting PM2 ===",
               "sudo -u github-deploy pm2 restart yop-backend || sudo -u github-deploy pm2 start server.js --name yop-backend",
               "sudo -u github-deploy pm2 save",
               "echo === Deployment completed ===",
               "sudo -u github-deploy pm2 status",
+              "echo Deployed commit: $(cd /home/ubuntu/CS6620CloudComputing && git rev-parse HEAD)",
               "echo Deployment completed at $(date)"
             ]' \
             --output text \
@@ -59,36 +65,37 @@ jobs:
       - name: Wait for deployment
         run: |
           echo "⏳ Waiting for deployment to complete..."
-          sleep 25
+          sleep 30
 
           COMMAND_ID="${{ steps.deploy.outputs.command_id }}"
           INSTANCE_ID="i-0178c29bf15b3e26c"
 
           echo "Checking status for Command: $COMMAND_ID on Instance: $INSTANCE_ID"
 
-          STATUS=$(aws ssm get-command-invocation \
-            --command-id "$COMMAND_ID" \
-            --instance-id "$INSTANCE_ID" \
-            --query 'Status' \
-            --output text)
-
-          echo "📊 Deployment status: $STATUS"
-
-          if [ "$STATUS" = "Success" ]; then
-            echo "✅ Deployment successful!"
-          elif [ "$STATUS" = "InProgress" ]; then
-            echo "⏳ Still in progress, waiting more..."
-            sleep 30
+          # 尝试多次检查状态
+          for i in {1..6}; do
             STATUS=$(aws ssm get-command-invocation \
               --command-id "$COMMAND_ID" \
               --instance-id "$INSTANCE_ID" \
               --query 'Status' \
               --output text)
-            echo "📊 Final status: $STATUS"
-          fi
+            
+            echo "📊 Attempt $i: Status = $STATUS"
+            
+            if [ "$STATUS" = "Success" ]; then
+              echo "✅ Deployment successful!"
+              break
+            elif [ "$STATUS" = "Failed" ] || [ "$STATUS" = "Cancelled" ]; then
+              echo "❌ Deployment failed with status: $STATUS"
+              break
+            else
+              echo "⏳ Still in progress, waiting 10 more seconds..."
+              sleep 10
+            fi
+          done
 
           if [ "$STATUS" != "Success" ]; then
-            echo "❌ Deployment failed with status: $STATUS"
+            echo "❌ Deployment failed or timed out with status: $STATUS"
             
             echo "=== Output ==="
             aws ssm get-command-invocation \
@@ -119,3 +126,32 @@ jobs:
             --instance-id "$INSTANCE_ID" \
             --query 'StandardOutputContent' \
             --output text || echo "No output available"
+
+      - name: Verify deployment
+        run: |
+          echo "🔍 Verifying deployment..."
+
+          # 验证部署的commit是否正确
+          DEPLOYED_COMMIT=$(aws ssm send-command \
+            --instance-ids i-0178c29bf15b3e26c \
+            --document-name "AWS-RunShellScript" \
+            --parameters 'commands=["cd /home/ubuntu/CS6620CloudComputing && git rev-parse HEAD"]' \
+            --query 'Command.CommandId' \
+            --output text)
+
+          sleep 5
+
+          DEPLOYED_SHA=$(aws ssm get-command-invocation \
+            --command-id "$DEPLOYED_COMMIT" \
+            --instance-id "i-0178c29bf15b3e26c" \
+            --query 'StandardOutputContent' \
+            --output text | tr -d '\n')
+
+          echo "GitHub SHA: ${{ github.sha }}"
+          echo "Deployed SHA: $DEPLOYED_SHA"
+
+          if [[ "${{ github.sha }}" == "$DEPLOYED_SHA"* ]]; then
+            echo "✅ Correct version deployed!"
+          else
+            echo "⚠️ Version mismatch - manual intervention may be needed"
+          fi
