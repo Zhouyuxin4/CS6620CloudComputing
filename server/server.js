@@ -7,6 +7,7 @@ const cors = require("cors");
 const app = express();
 
 // 1. 最重要：先使用 cookieParser
+// test cicd workflow
 app.use(cookieParser());
 
 // 2. 配置 CORS - 修复版本
