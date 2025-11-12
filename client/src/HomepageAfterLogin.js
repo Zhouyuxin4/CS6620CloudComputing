@@ -9,6 +9,8 @@ function HomepageAfterLogin({ userProfile }) {
   const [userName, setUserName] = useState("");
   const [journeys, setJourneys] = useState([]);
   const [profilePicture, setProfilePicture] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loginUser = Cookies.get("user");
@@ -43,24 +45,42 @@ function HomepageAfterLogin({ userProfile }) {
   };
 
   useEffect(() => {
-    const userName = Cookies.get("userName");
-    if (!userName) {
-      console.error("No userName found");
-      return;
-    }
+    const fetchJourneys = async () => {
+      const userName = Cookies.get("userName");
+      if (!userName) {
+        console.error("No userName found");
+        setLoading(false);
+        return;
+      }
 
-    console.log("Fetching journeys for userName:", userName);
-    console.log("Token:", Cookies.get("token"));
+      console.log("Fetching journeys for userName:", userName);
+      console.log("Token:", Cookies.get("token"));
 
-    api
-      .get(`/journeys/${userName}`)
-      .then((response) => {
-        console.log("Journeys fetched:", response.data);
-        setJourneys(response.data);
-      })
-      .catch((error) => {
+      try {
+        const response = await api.get(`/journeys/${userName}`);
+        console.log("Full API Response:", response.data);
+
+        // FIX: Extract journeys array from response
+        if (response.data && response.data.journeys) {
+          console.log("Journeys array:", response.data.journeys);
+          console.log("Total journeys:", response.data.totalJourneys);
+          console.log("Is own profile:", response.data.isOwnProfile);
+
+          setJourneys(response.data.journeys); // ✅ FIXED: Use response.data.journeys
+        } else {
+          console.error("Unexpected response structure:", response.data);
+          setJourneys([]);
+        }
+      } catch (error) {
         console.error("Error fetching journeys:", error);
-      });
+        setError(error.message);
+        setJourneys([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJourneys();
   }, []);
 
   const handleJourneyClick = (id, title) => {
@@ -69,7 +89,7 @@ function HomepageAfterLogin({ userProfile }) {
         title: title,
       },
     });
-    console.log(title);
+    console.log("Navigating to journey:", title);
   };
 
   const handleSearchJourney = () => {
@@ -100,7 +120,7 @@ function HomepageAfterLogin({ userProfile }) {
                   className="profile-picture"
                 />
                 <div className="text-info">
-                  <h2> Hi, {userName}</h2>
+                  <h2>Hi, {userName}</h2>
                   <p>
                     You have recorded: {journeys.length}{" "}
                     {journeys.length === 1 ? "journey" : "journeys"}
@@ -112,9 +132,14 @@ function HomepageAfterLogin({ userProfile }) {
             <div className="historical-footprints">
               <h2>{userName}'s Historical Footprints</h2>
               <div className="journeys-list">
-                {journeys && journeys.length > 0 ? (
-                  journeys.map((journey) =>
-                    journey && journey.title ? (
+                {loading ? (
+                  <div className="loading">Loading journeys...</div>
+                ) : error ? (
+                  <div className="error">Error: {error}</div>
+                ) : journeys && journeys.length > 0 ? (
+                  journeys.map((journey) => {
+                    console.log("Rendering journey:", journey); // Debug log
+                    return journey && journey._id && journey.title ? (
                       <div
                         key={journey._id}
                         className="journey-card"
@@ -123,12 +148,33 @@ function HomepageAfterLogin({ userProfile }) {
                         }
                       >
                         <h3>{journey.title}</h3>
+                        {journey.coverImage && (
+                          <img
+                            src={journey.coverImage}
+                            alt={journey.title}
+                            style={{
+                              width: "100%",
+                              height: "150px",
+                              objectFit: "cover",
+                            }}
+                          />
+                        )}
+                        <p className="journey-meta">
+                          Created:{" "}
+                          {new Date(journey.createdAt).toLocaleDateString()}
+                        </p>
+                        <p className="journey-stats">
+                          ❤️ {journey.likesCount || 0} | 💬{" "}
+                          {journey.commentsCount || 0} | 🔖{" "}
+                          {journey.bookmarksCount || 0}
+                        </p>
                       </div>
-                    ) : null
-                  )
+                    ) : null;
+                  })
                 ) : (
                   <div className="no-journeys">
                     <p>No previous journeys found.</p>
+                    <p>Start by creating your first journey!</p>
                   </div>
                 )}
               </div>

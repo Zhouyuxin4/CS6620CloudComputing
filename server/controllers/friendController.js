@@ -1,17 +1,17 @@
-const Users = require("../models/Users");
-const Journeys = require("../models/Journeys");
+const User = require("../models/Users");
+const Journey = require("../models/Journeys");
 
 // Search users by keyword
 exports.searchUsers = async (req, res) => {
   try {
     const keyword = req.params.keyword;
     const currentUserId = req.user.userId;
-    
-    const users = await Users.find({
+
+    const users = await User.find({
       userName: { $regex: keyword, $options: "i" },
       _id: { $ne: currentUserId }, // Exclude current user
     }).select("userName profilePicture");
-    
+
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -29,12 +29,12 @@ exports.followUser = async (req, res) => {
     }
 
     // Add to current user's following list
-    await Users.findByIdAndUpdate(userId, {
+    await User.findByIdAndUpdate(userId, {
       $addToSet: { following: targetUserId },
     });
-    
+
     // Add to target user's followers list
-    await Users.findByIdAndUpdate(targetUserId, {
+    await User.findByIdAndUpdate(targetUserId, {
       $addToSet: { followers: userId },
     });
 
@@ -54,7 +54,7 @@ exports.unfollowUser = async (req, res) => {
     await Users.findByIdAndUpdate(userId, {
       $pull: { following: targetUserId },
     });
-    
+
     // Remove from target user's followers list
     await Users.findByIdAndUpdate(targetUserId, {
       $pull: { followers: userId },
@@ -70,7 +70,7 @@ exports.unfollowUser = async (req, res) => {
 exports.getFollowingList = async (req, res) => {
   try {
     const userId = req.user.userId;
-    const user = await Users.findById(userId).populate(
+    const user = await User.findById(userId).populate(
       "following",
       "userName profilePicture"
     );
@@ -84,7 +84,7 @@ exports.getFollowingList = async (req, res) => {
 exports.getFollowersList = async (req, res) => {
   try {
     const userId = req.user.userId;
-    const user = await Users.findById(userId).populate(
+    const user = await User.findById(userId).populate(
       "followers",
       "userName profilePicture"
     );
@@ -98,16 +98,16 @@ exports.getFollowersList = async (req, res) => {
 exports.getFollowingJourneys = async (req, res) => {
   try {
     const userId = req.user.userId;
-    
+
     // Get list of users that current user is following
-    const user = await Users.findById(userId).select("following");
-    
+    const user = await User.findById(userId).select("following");
+
     if (!user || !user.following || user.following.length === 0) {
       return res.status(200).json([]);
     }
 
     // Get all journeys from followed users, sorted by creation time
-    const journeys = await Journeys.find({
+    const journeys = await Journey.find({
       userName: { $in: user.following },
     })
       .populate("userName", "userName profilePicture")

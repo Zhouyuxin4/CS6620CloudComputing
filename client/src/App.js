@@ -7,6 +7,7 @@ import ProfilePage from "./ProfilePage";
 import JourneyDetails from "./JourneyDetails";
 import SearchPage from "./SearchPage";
 import FriendPage from "./FriendPage";
+import NotificationPage from "./NotificationPage";
 
 function App() {
   const [userProfile, setUserProfile] = useState({
@@ -39,6 +40,7 @@ function App() {
       <Route path="/journey/:id" element={<JourneyDetails />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/friends" element={<FriendPage />} />
+      <Route path="/notifications" element={<NotificationPage />} />
     </Routes>
   );
 }
