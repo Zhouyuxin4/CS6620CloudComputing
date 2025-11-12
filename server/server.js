@@ -6,7 +6,7 @@ const cors = require("cors");
 
 const app = express();
 
-// 1. 最重要：先使用 cookieParser
+// 1. cookie parser
 // test cicd workflow
 app.use(cookieParser());
 
