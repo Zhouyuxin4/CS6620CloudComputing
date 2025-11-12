@@ -7,12 +7,15 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 // create axios instance
 const api = axios.create({
-  baseURL: API_BASE_URL,
-  withCredentials: true, // very important! allow cross-origin requests to carry cookies
-  timeout: 10000, // 10 seconds timeout
+  baseURL: "http://localhost:3000",
+  timeout: 10000,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json", // 👈 确保是 application/json
+  },
 });
 
-// 请求拦截器:在每个请求中添加 token 到 header
+// request interceptor: add token to header in each request
 api.interceptors.request.use(
   (config) => {
     const token = Cookies.get("token");

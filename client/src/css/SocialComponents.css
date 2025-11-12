@@ -1,0 +1,645 @@
+/* css/SocialComponents.css */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+/* ============ SOCIAL BUTTONS BAR ============ */
+.social-actions-bar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============ LIKE BUTTON ============ */
+.like-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #e5e7eb;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: #374151;
+}
+
+.like-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 86, 69, 0.2);
+  border-color: #7c5645;
+}
+
+.like-button.liked {
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  color: white;
+  border-color: #ff4757;
+}
+
+.like-button.liked:hover {
+  background: linear-gradient(135deg, #ff4757, #ee5a6f);
+  transform: scale(1.05);
+}
+
+.like-button.small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.like-button.loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.like-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.like-button:hover .like-icon {
+  transform: scale(1.2);
+}
+
+.like-button.liked .like-icon {
+  animation: heartbeat 0.6s ease;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* ============ BOOKMARK BUTTON ============ */
+.bookmark-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #e5e7eb;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: #374151;
+}
+
+.bookmark-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 86, 69, 0.2);
+  border-color: #7c5645;
+}
+
+.bookmark-button.bookmarked {
+  background: #7c5645;
+  color: white;
+  border-color: #7c5645;
+}
+
+.bookmark-button.bookmarked:hover {
+  background: #5d3f33;
+  transform: scale(1.05);
+}
+
+.bookmark-button.small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.bookmark-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.bookmark-button:hover .bookmark-icon {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* ============ COMMENT SECTION ============ */
+.comment-section {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 30px 0;
+  box-shadow: 0 4px 15px rgba(124, 86, 69, 0.15);
+  font-family: "Playfair Display", serif;
+}
+
+.comments-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #7c5645;
+}
+
+.comments-header h3 {
+  font-size: 1.8em;
+  color: #333;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-icon {
+  font-size: 0.7em;
+  color: #7c5645;
+}
+
+/* New Comment Form */
+.new-comment-form {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: rgba(124, 86, 69, 0.05);
+  border-radius: 12px;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #7c5645;
+  box-shadow: 0 0 0 3px rgba(124, 86, 69, 0.1);
+}
+
+.submit-comment-btn {
+  margin-top: 12px;
+  padding: 12px 30px;
+  background: #7c5645;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-comment-btn:hover {
+  background: #5d3f33;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(124, 86, 69, 0.3);
+}
+
+/* Comments List */
+.comments-list {
+  margin-top: 20px;
+}
+
+.no-comments {
+  text-align: center;
+  padding: 40px;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Comment Item */
+.comment-item {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.comment-item:hover {
+  box-shadow: 0 4px 12px rgba(124, 86, 69, 0.1);
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #7c5645;
+}
+
+.comment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 15px;
+}
+
+.comment-time {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.comment-text {
+  color: #374151;
+  line-height: 1.6;
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.reply-btn,
+.delete-btn {
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  color: #6b7280;
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reply-btn:hover {
+  background: #7c5645;
+  color: white;
+  border-color: #7c5645;
+}
+
+.delete-btn:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+/* Reply Form */
+.reply-form {
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(124, 86, 69, 0.05);
+  border-radius: 10px;
+}
+
+.reply-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.reply-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.submit-reply-btn,
+.cancel-reply-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.submit-reply-btn {
+  background: #7c5645;
+  color: white;
+}
+
+.submit-reply-btn:hover {
+  background: #5d3f33;
+}
+
+.cancel-reply-btn {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+.cancel-reply-btn:hover {
+  background: #d1d5db;
+}
+
+/* Replies */
+.comment-replies {
+  margin-top: 15px;
+  padding-left: 50px;
+  border-left: 2px solid #e5e7eb;
+}
+
+.reply-item {
+  padding: 12px;
+  background: rgba(124, 86, 69, 0.03);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.reply-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e5e7eb;
+}
+
+.reply-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.reply-author {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 14px;
+}
+
+.reply-to {
+  color: #7c5645;
+  font-size: 14px;
+}
+
+.reply-time {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.reply-text {
+  color: #374151;
+  line-height: 1.5;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.reply-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+/* Load More Button */
+.load-more-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 30px;
+  background: transparent;
+  border: 2px solid #7c5645;
+  border-radius: 25px;
+  color: #7c5645;
+  font-family: "Playfair Display", serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.load-more-btn:hover {
+  background: #7c5645;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(124, 86, 69, 0.2);
+}
+
+.loading {
+  text-align: center;
+  padding: 30px;
+  color: #7c5645;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .comment-section {
+    padding: 15px;
+  }
+
+  .social-actions-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .comment-replies {
+    padding-left: 20px;
+  }
+
+  .reply-form {
+    padding: 10px;
+  }
+}
+
+/* Enhanced Reply Actions Styling */
+.reply-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Make sure reply-btn and delete-btn in replies have the same styling */
+.reply-actions .reply-btn,
+.reply-actions .delete-btn {
+  padding: 6px 14px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  color: #6b7280;
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+}
+
+.reply-actions .reply-btn:hover {
+  background: #7c5645;
+  color: white;
+  border-color: #7c5645;
+  transform: translateY(-1px);
+}
+
+.reply-actions .delete-btn:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+  transform: translateY(-1px);
+}
+
+/* Ensure consistent button appearance */
+.comment-actions .reply-btn,
+.comment-actions .delete-btn,
+.reply-actions .reply-btn,
+.reply-actions .delete-btn {
+  height: 32px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Fix for any inherited styles that might affect buttons */
+.reply-item button {
+  font-family: "Playfair Display", serif !important;
+  box-sizing: border-box;
+}
+
+/* Ensure the like button in replies maintains its size */
+.reply-actions .like-button.small {
+  height: 32px;
+  padding: 6px 12px;
+}
+
+/* Unified button styles for all comment actions */
+
+/* Base button style for both Reply and Delete */
+.comment-actions .reply-btn,
+.comment-actions .delete-btn,
+.reply-actions .reply-btn,
+.reply-actions .delete-btn {
+  /* Reset and base styles */
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: white;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 20px;
+  color: #6b7280;
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 70px;
+  height: 32px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Hover effects */
+.comment-actions .reply-btn:hover,
+.reply-actions .reply-btn:hover {
+  background: #7c5645;
+  color: white;
+  border-color: #7c5645;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(124, 86, 69, 0.2);
+}
+
+.comment-actions .delete-btn:hover,
+.reply-actions .delete-btn:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+}
+
+/* Active/Focus states */
+.comment-actions .reply-btn:active,
+.comment-actions .delete-btn:active,
+.reply-actions .reply-btn:active,
+.reply-actions .delete-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.comment-actions .reply-btn:focus,
+.comment-actions .delete-btn:focus,
+.reply-actions .reply-btn:focus,
+.reply-actions .delete-btn:focus {
+  outline: 2px solid #7c5645;
+  outline-offset: 2px;
+}
+
+/* Ensure consistent spacing */
+.comment-actions,
+.reply-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* Override any conflicting styles */
+.comment-section button.reply-btn,
+.comment-section button.delete-btn {
+  font-family: "Playfair Display", serif !important;
+  letter-spacing: 0.3px;
+}
+
+/* Make sure the like button aligns well */
+.comment-actions .like-button,
+.reply-actions .like-button {
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Special styling for disabled state */
+.comment-actions .reply-btn:disabled,
+.comment-actions .delete-btn:disabled,
+.reply-actions .reply-btn:disabled,
+.reply-actions .delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Fix any box model issues */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure buttons don't inherit unwanted styles */
+.comment-item button,
+.reply-item button {
+  text-transform: none;
+  font-weight: 500;
+}

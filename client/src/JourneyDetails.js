@@ -1,3 +1,4 @@
+// JourneyDetails.js - Updated version with social features
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import MapComponent from "./MapComponent";
@@ -5,23 +6,19 @@ import Layout from "./Layout";
 import Cookies from "js-cookie";
 import "./css/JourneyDetails.css";
 import api from "./api";
+import { LikeButton, BookmarkButton, CommentSection } from "./SocialComponents";
 
 function JourneyDetails() {
   const { id } = useParams();
   const [journey, setJourney] = useState(null);
-  const [journeyOwner, setJourneyOwner] = useState(null); // Store journey owner info
-  const [isOwner, setIsOwner] = useState(false); // Check if current user is owner
-
+  const [journeyOwner, setJourneyOwner] = useState(null);
+  const [isOwner, setIsOwner] = useState(false);
   const [newTitle, setAddress] = useState("");
-  const [description, setDescription] = useState("");
-  const [photo, setPhoto] = useState(null);
   const [details, setDetails] = useState([]);
   const [userName, setUserName] = useState("");
-  const [currentUserId, setCurrentUserId] = useState(null); // Store current user ID
-  const [markers, setMarkers] = useState([]);
+  const [currentUserId, setCurrentUserId] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state;
   const [currentTitle, setCurrentTitle] = useState(
     location.state?.title || "My New Journey"
   );
@@ -31,6 +28,13 @@ function JourneyDetails() {
     journalText: "",
     journalPhoto: null,
   });
+
+  // Social data states
+  const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(0);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [bookmarksCount, setBookmarksCount] = useState(0);
+  const [commentsCount, setCommentsCount] = useState(0);
 
   const handleStartEdit = (detail) => {
     setEditingDetailId(detail._id);
@@ -69,11 +73,6 @@ function JourneyDetails() {
         journalText: editForm.journalText,
       };
 
-      console.log("Sending update request:", {
-        detailId,
-        updateData,
-      });
-
       const response = await api.put(
         `/details/${id}/${detailId}/update`,
         updateData
@@ -86,30 +85,39 @@ function JourneyDetails() {
       }
     } catch (error) {
       console.error("Error updating detail:", error);
-      console.log("Error details:", error.response);
       alert("Failed to update stop");
     }
   };
 
-  // Fetch journey information including owner
+  // Fetch journey information including owner and social data
   const fetchJourneyInfo = async () => {
     try {
       const response = await api.get(`/journeys/journey/${id}`);
-      setJourney(response.data);
-      setJourneyOwner(response.data.userName);
-      setCurrentTitle(response.data.title);
-      console.log("Fetched journey:", response.data);
+      const journeyData = response.data.journey || response.data;
+
+      setJourney(journeyData);
+      setJourneyOwner(journeyData.userName);
+      setCurrentTitle(journeyData.title);
+
+      // Set social data
+      setIsLiked(journeyData.isLiked || false);
+      setLikesCount(journeyData.likesCount || 0);
+      setIsBookmarked(journeyData.isBookmarked || false);
+      setBookmarksCount(journeyData.bookmarksCount || 0);
+      setCommentsCount(journeyData.commentsCount || 0);
+
+      console.log("Fetched journey with social data:", journeyData);
     } catch (error) {
       console.error("Error fetching journey info:", error);
     }
   };
 
-  // Fetch journey details (stops)
+  // Fetch journey details (stops) with social data
   const fetchJourneyDetails = async () => {
     try {
       const response = await api.get(`/details/${id}/allDetails`);
       setDetails(response.data);
-      console.log("Fetched details:", response.data);
+      console.log("Fetched details with social data:", response.data);
     } catch (error) {
       console.error("Error fetching journey details:", error);
     }
@@ -120,11 +128,6 @@ function JourneyDetails() {
     if (journeyOwner && currentUserId) {
       const isUserOwner = journeyOwner._id === currentUserId;
       setIsOwner(isUserOwner);
-      console.log("Ownership check:", {
-        journeyOwnerId: journeyOwner._id,
-        currentUserId,
-        isOwner: isUserOwner,
-      });
     }
   }, [journeyOwner, currentUserId]);
 
@@ -138,10 +141,10 @@ function JourneyDetails() {
     if (loginUser) {
       const user = JSON.parse(loginUser);
       setUserName(user.userName);
-      // Try different possible ID field names
       const userId = user.userId || user.id || user._id;
       setCurrentUserId(userId);
-      console.log("Current user from cookie:", { user, userId });
+      // Store user info in localStorage for comment component
+      localStorage.setItem("user", JSON.stringify({ ...user, id: userId }));
     }
   }, [id]);
 
@@ -155,9 +158,7 @@ function JourneyDetails() {
     }
 
     try {
-      console.log(`Deleting detail: /details/${id}/${detailId}`);
       const response = await api.delete(`/details/${id}/${detailId}`);
-
       if (response.status === 200) {
         alert("Stop deleted successfully");
         fetchJourneyDetails();
@@ -168,20 +169,6 @@ function JourneyDetails() {
     }
   };
 
-  const handleDetailsUpdate = () => {
-    fetchJourneyDetails();
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    alert("Do you confirm the change?");
-  };
-
-  const handleGoBack = () => {
-    navigate(-1); // Go back to previous page
-  };
-
-  // Update the Journey Title
   const handleUpdateJourney = async () => {
     if (!isOwner) {
       alert("You don't have permission to edit this journey");
@@ -202,7 +189,6 @@ function JourneyDetails() {
         alert("Journey updated successfully");
         setCurrentTitle(newTitle);
         setAddress("");
-        // Stay on current page after updating title
       }
     } catch (error) {
       console.error("Error updating journey:", error);
@@ -210,7 +196,6 @@ function JourneyDetails() {
     }
   };
 
-  // Delete The Journey
   const handleDeleteJourney = async () => {
     if (!isOwner) {
       alert("You don't have permission to delete this journey");
@@ -231,12 +216,16 @@ function JourneyDetails() {
 
       if (response.status === 200) {
         alert("Journey deleted successfully");
-        navigate(-1); // Go back to previous page
+        navigate(-1);
       }
     } catch (error) {
       console.error("Error deleting journey:", error);
       alert("Failed to delete journey");
     }
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -245,16 +234,33 @@ function JourneyDetails() {
         <h1>
           Details of {currentTitle}
           {journeyOwner && (
-            <span className="journey-author">
-              {" "}
-              by {journeyOwner.userName}
-            </span>
+            <span className="journey-author"> by {journeyOwner.userName}</span>
           )}
         </h1>
 
+        {/* Social Actions Bar - For the entire Journey */}
+        <div className="social-actions-bar">
+          <LikeButton
+            targetModel="Journeys"
+            targetId={id}
+            initialLiked={isLiked}
+            initialCount={likesCount}
+          />
+          <BookmarkButton
+            targetModel="Journeys"
+            targetId={id}
+            initialBookmarked={isBookmarked}
+            initialCount={bookmarksCount}
+          />
+          <div className="comments-indicator">💬 {commentsCount} Comments</div>
+        </div>
+
         {/* Only show edit form if user is owner */}
         {isOwner && (
-          <form className="journey-update-box" onSubmit={handleSubmit}>
+          <form
+            className="journey-update-box"
+            onSubmit={(e) => e.preventDefault()}
+          >
             <div>
               <input
                 className="journey-update-title"
@@ -265,14 +271,13 @@ function JourneyDetails() {
                 required
               />
             </div>
-
             <button onClick={handleUpdateJourney}>Update Journey Title</button>
           </form>
         )}
 
         <div className="details-container">
-          <MapComponent 
-            apiKey="AIzaSyBvjss2rrxy8HRCt-Yu6dnKRoUpX35wKh8" 
+          <MapComponent
+            apiKey="AIzaSyBvjss2rrxy8HRCt-Yu6dnKRoUpX35wKh8"
             isOwner={isOwner}
           />
 
@@ -350,6 +355,24 @@ function JourneyDetails() {
                             )}
                           </>
                         )}
+
+                        {/* Social Actions for Each Detail */}
+                        <div className="detail-social-actions">
+                          <LikeButton
+                            targetModel="JourneyDetails"
+                            targetId={detail._id}
+                            initialLiked={detail.isLiked}
+                            initialCount={detail.likesCount || 0}
+                            size="small"
+                          />
+                          <BookmarkButton
+                            targetModel="JourneyDetails"
+                            targetId={detail._id}
+                            initialBookmarked={detail.isBookmarked}
+                            initialCount={detail.bookmarksCount || 0}
+                            size="small"
+                          />
+                        </div>
                       </>
                     )}
                   </div>
@@ -397,7 +420,9 @@ function JourneyDetails() {
             )}
           </div>
         </div>
-        <h3></h3>
+
+        {/* Comment Section - For the entire Journey */}
+        <CommentSection journeyId={id} />
 
         <div className="detail-button">
           {/* Only show delete journey button if user is owner */}
@@ -409,9 +434,7 @@ function JourneyDetails() {
               Delete Journey
             </button>
           )}
-          <button onClick={handleGoBack}>
-            ← Back
-          </button>
+          <button onClick={handleGoBack}>← Back</button>
         </div>
       </div>
     </Layout>

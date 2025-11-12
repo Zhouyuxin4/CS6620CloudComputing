@@ -30,7 +30,7 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true, // ⚠️ 关键设置
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
     exposedHeaders: ["Set-Cookie"],
@@ -63,16 +63,20 @@ mongoose
     console.log("Error connecting to MongoDB", error.message);
   });
 
-// 6. 路由
+// 6. 路由!
 const userRoutes = require("./routes/userRoutes");
 const journeyRoutes = require("./routes/journeyRoutes");
 const journeyDetailRoutes = require("./routes/journeyDetailRoutes");
 const friendRoutes = require("./routes/friendsRoutes");
+const socialRoutes = require("./routes/socialRoutes");
+const notificationRoutes = require("./routes/notificationRoute");
 
 app.use("/users", userRoutes);
 app.use("/journeys", journeyRoutes);
 app.use("/details", journeyDetailRoutes);
 app.use("/friends", friendRoutes);
+app.use("/social", socialRoutes);
+app.use("/notifications", notificationRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the YOP API.");
