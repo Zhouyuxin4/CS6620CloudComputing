@@ -20,7 +20,6 @@ app.use(
         process.env.FRONTEND_URL,
       ];
 
-      // 允许没有 origin 的请求（比如 mobile apps, postman）
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
