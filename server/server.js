@@ -10,7 +10,7 @@ const app = express();
 // test cicd workflow 2.00
 app.use(cookieParser());
 
-// 2. 配置 CORS - 修复版本
+// 2. CORS settings
 app.use(
   cors({
     origin: function (origin, callback) {
