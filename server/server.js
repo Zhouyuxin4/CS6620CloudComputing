@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 
 // 1. cookie parser
-// test cicd workflow 11.12
+// test cicd workflow 11.12 v2
 app.use(cookieParser());
 
 // 2. CORS settings
