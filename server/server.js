@@ -7,14 +7,13 @@ const cors = require("cors");
 const app = express();
 
 // 1. cookie parser
-// test cicd workflow 2.00
+// test cicd workflow 11.12
 app.use(cookieParser());
 
 // 2. CORS settings
 app.use(
   cors({
     origin: function (origin, callback) {
-      // 允许的来源列表
       const allowedOrigins = [
         "http://localhost:3001",
         "http://localhost:3000",
