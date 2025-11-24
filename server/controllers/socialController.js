@@ -106,14 +106,17 @@ exports.toggleLike = async (req, res) => {
         // Create notification
         if (updateResult && updateResult.userName._id.toString() !== userId) {
           const user = await Users.findById(userId);
-          await new Notifications({
-            recipientId: updateResult.userName._id,
-            senderId: userId,
-            type: "journey_liked",
-            targetId: targetId,
-            targetModel: "Journeys",
-            message: `${user.userName} liked your journey "${updateResult.title}"`,
-          }).save();
+          await new Notifications(
+            {
+              recipientId: updateResult.userName._id,
+              senderId: userId,
+              type: "journey_liked",
+              targetId: targetId,
+              targetModel: "Journeys",
+              message: `${user.userName} liked your journey "${updateResult.title}"`,
+            },
+            req
+          );
         }
       } else if (targetModel === "JourneyDetails") {
         updateResult = await JourneyDetails.findByIdAndUpdate(
@@ -131,14 +134,17 @@ exports.toggleLike = async (req, res) => {
           updateResult.journeyId.userName._id.toString() !== userId
         ) {
           const user = await Users.findById(userId);
-          await new Notifications({
-            recipientId: updateResult.journeyId.userName._id,
-            senderId: userId,
-            type: "detail_liked",
-            targetId: targetId,
-            targetModel: "JourneyDetails",
-            message: `${user.userName} liked a moment in your journey "${updateResult.journeyId.title}"`,
-          }).save();
+          await new Notifications(
+            {
+              recipientId: updateResult.journeyId.userName._id,
+              senderId: userId,
+              type: "detail_liked",
+              targetId: targetId,
+              targetModel: "JourneyDetails",
+              message: `${user.userName} liked a moment in your journey "${updateResult.journeyId.title}"`,
+            },
+            req
+          );
         }
       } else {
         updateResult = await Comments.findByIdAndUpdate(
@@ -150,14 +156,17 @@ exports.toggleLike = async (req, res) => {
         // Create notification
         if (updateResult && updateResult.userId._id.toString() !== userId) {
           const user = await Users.findById(userId);
-          await new Notifications({
-            recipientId: updateResult.userId._id,
-            senderId: userId,
-            type: "comment_liked",
-            targetId: targetId,
-            targetModel: "Comments",
-            message: `${user.userName} liked your comment`,
-          }).save();
+          await new Notifications(
+            {
+              recipientId: updateResult.userId._id,
+              senderId: userId,
+              type: "comment_liked",
+              targetId: targetId,
+              targetModel: "Comments",
+              message: `${user.userName} liked your comment`,
+            },
+            req
+          );
         }
       }
 
@@ -439,28 +448,34 @@ exports.createComment = async (req, res) => {
 
     if (!parentCommentId && journey.userName._id.toString() !== userId) {
       // Notification for journey owner
-      await createNotification({
-        recipientId: journey.userName._id,
-        senderId: userId,
-        type: "journey_commented",
-        targetId: journeyId,
-        targetModel: "Journeys",
-        message: `${user.userName} commented on your journey "${journey.title}"`,
-      });
+      await createNotification(
+        {
+          recipientId: journey.userName._id,
+          senderId: userId,
+          type: "journey_commented",
+          targetId: journeyId,
+          targetModel: "Journeys",
+          message: `${user.userName} commented on your journey "${journey.title}"`,
+        },
+        req
+      );
     } else if (parentCommentId) {
       // Notification for comment owner
       const parentComment = await Comments.findById(parentCommentId).populate(
         "userId"
       );
       if (parentComment.userId._id.toString() !== userId) {
-        await createNotification({
-          recipientId: parentComment.userId._id,
-          senderId: userId,
-          type: "comment_replied",
-          targetId: parentCommentId,
-          targetModel: "Comments",
-          message: `${user.userName} replied to your comment`,
-        });
+        await createNotification(
+          {
+            recipientId: parentComment.userId._id,
+            senderId: userId,
+            type: "comment_replied",
+            targetId: parentCommentId,
+            targetModel: "Comments",
+            message: `${user.userName} replied to your comment`,
+          },
+          req
+        );
       }
     }
 
@@ -623,13 +638,28 @@ exports.deleteComment = async (req, res) => {
 // ============ HELPER FUNCTIONS ============
 
 // Create notification helper
-async function createNotification(notificationData) {
+async function createNotification(notificationData, req) {
   try {
     const notification = new Notifications(notificationData);
     await notification.save();
 
-    // TODO: Emit WebSocket event for real-time notification
-    // io.to(notificationData.recipientId).emit('new_notification', notification);
+    // 🆕 添加Socket.io实时推送
+    const io = req.app.get("io");
+    if (io) {
+      io.to(`user_${notificationData.recipientId}`).emit("new-notification", {
+        _id: notification._id,
+        type: notification.type,
+        message: notification.message,
+        senderId: notification.senderId,
+        targetId: notification.targetId,
+        targetModel: notification.targetModel,
+        createdAt: notification.createdAt,
+        isRead: false,
+      });
+      console.log(
+        `📤 Sent notification to user_${notificationData.recipientId}`
+      );
+    }
 
     return notification;
   } catch (error) {
