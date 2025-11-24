@@ -106,7 +106,7 @@ exports.toggleLike = async (req, res) => {
         // Create notification
         if (updateResult && updateResult.userName._id.toString() !== userId) {
           const user = await Users.findById(userId);
-          await new Notifications(
+          await createNotification(
             {
               recipientId: updateResult.userName._id,
               senderId: userId,
@@ -134,14 +134,14 @@ exports.toggleLike = async (req, res) => {
           updateResult.journeyId.userName._id.toString() !== userId
         ) {
           const user = await Users.findById(userId);
-          await new Notifications(
+          await createNotification(
             {
-              recipientId: updateResult.journeyId.userName._id,
+              recipientId: updateResult.userName._id,
               senderId: userId,
-              type: "detail_liked",
+              type: "journey_liked",
               targetId: targetId,
-              targetModel: "JourneyDetails",
-              message: `${user.userName} liked a moment in your journey "${updateResult.journeyId.title}"`,
+              targetModel: "Journeys",
+              message: `${user.userName} liked your journey "${updateResult.title}"`,
             },
             req
           );
@@ -156,14 +156,14 @@ exports.toggleLike = async (req, res) => {
         // Create notification
         if (updateResult && updateResult.userId._id.toString() !== userId) {
           const user = await Users.findById(userId);
-          await new Notifications(
+          await createNotification(
             {
-              recipientId: updateResult.userId._id,
+              recipientId: updateResult.userName._id,
               senderId: userId,
-              type: "comment_liked",
+              type: "journey_liked",
               targetId: targetId,
-              targetModel: "Comments",
-              message: `${user.userName} liked your comment`,
+              targetModel: "Journeys",
+              message: `${user.userName} liked your journey "${updateResult.title}"`,
             },
             req
           );
