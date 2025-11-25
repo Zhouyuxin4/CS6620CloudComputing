@@ -13,6 +13,9 @@ const { Server } = require("socket.io");
 app.use(cookieParser());
 const { pushMetric } = require("./utils/cloudwatchHelper");
 
+let activeConnections = 0;
+let totalNotificationsSent = 0;
+
 // 2. CORS settings
 app.use(
   cors({
