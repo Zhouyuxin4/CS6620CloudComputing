@@ -231,6 +231,7 @@ exports.getLikes = async (req, res) => {
 // ============ BOOKMARKS FUNCTIONALITY ============
 
 // Toggle bookmark for journey or journey detail
+// Toggle bookmark for journey or journey detail
 exports.toggleBookmark = async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -282,21 +283,58 @@ exports.toggleBookmark = async (req, res) => {
       await newBookmark.save();
       isBookmarked = true;
 
-      // Update count
+      // Update count and send notification
       if (targetModel === "Journeys") {
         const journey = await Journeys.findByIdAndUpdate(
           targetId,
           { $inc: { bookmarksCount: 1 } },
           { new: true }
-        );
+        ).populate("userName");
+
         bookmarksCount = journey.bookmarksCount;
+
+        // 🆕 Create notification for journey owner
+        if (journey && journey.userName._id.toString() !== userId) {
+          const user = await Users.findById(userId);
+          await createNotification(
+            {
+              recipientId: journey.userName._id,
+              senderId: userId,
+              type: "journey_bookmarked",
+              targetId: targetId,
+              targetModel: "Journeys",
+              message: `${user.userName} bookmarked your journey "${journey.title}"`,
+            },
+            req
+          );
+        }
       } else {
         const detail = await JourneyDetails.findByIdAndUpdate(
           targetId,
           { $inc: { bookmarksCount: 1 } },
           { new: true }
-        );
+        ).populate({
+          path: "journeyId",
+          populate: { path: "userName" },
+        });
+
         bookmarksCount = detail.bookmarksCount;
+
+        // 🆕 Create notification for journey detail owner
+        if (detail && detail.journeyId.userName._id.toString() !== userId) {
+          const user = await Users.findById(userId);
+          await createNotification(
+            {
+              recipientId: detail.journeyId.userName._id,
+              senderId: userId,
+              type: "journey_bookmarked",
+              targetId: detail.journeyId._id, // 注意这里用的是 journeyId
+              targetModel: "Journeys",
+              message: `${user.userName} bookmarked your journey detail from "${detail.journeyId.title}"`,
+            },
+            req
+          );
+        }
       }
     }
 
