@@ -5,7 +5,8 @@ const Comments = require("../models/Comments");
 const Journeys = require("../models/Journeys");
 const JourneyDetails = require("../models/JourneyDetails");
 const Users = require("../models/Users");
-const Notifications = require("../models/Notifications");
+// const Notifications = require("../models/Notifications");
+const { createNotification } = require("../services/notificationService");
 
 // ============ LIKES FUNCTIONALITY ============
 
@@ -634,35 +635,3 @@ exports.deleteComment = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-// ============ HELPER FUNCTIONS ============
-
-// Create notification helper
-async function createNotification(notificationData, req) {
-  try {
-    const notification = new Notifications(notificationData);
-    await notification.save();
-
-    // 🆕 添加Socket.io实时推送
-    const io = req.app.get("io");
-    if (io) {
-      io.to(`user_${notificationData.recipientId}`).emit("new-notification", {
-        _id: notification._id,
-        type: notification.type,
-        message: notification.message,
-        senderId: notification.senderId,
-        targetId: notification.targetId,
-        targetModel: notification.targetModel,
-        createdAt: notification.createdAt,
-        isRead: false,
-      });
-      console.log(
-        `📤 Sent notification to user_${notificationData.recipientId}`
-      );
-    }
-
-    return notification;
-  } catch (error) {
-    console.error("Create notification error:", error);
-  }
-}

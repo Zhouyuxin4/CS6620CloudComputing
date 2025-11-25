@@ -11,6 +11,7 @@ const { Server } = require("socket.io");
 // 1. cookie parser
 // test cicd workflow 11.12 v2
 app.use(cookieParser());
+const { pushMetric } = require("./utils/cloudwatchHelper");
 
 // 2. CORS settings
 app.use(
@@ -103,21 +104,26 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("✅ New WebSocket client connected:", socket.id);
+  activeConnections++;
+  console.log(
+    `✅ Connected: ${socket.id} | Total connections: ${activeConnections}`
+  );
+
+  pushMetric("WebSocketConnections", activeConnections, "Count");
 
   socket.on("authenticate", (userId) => {
-    console.log(`User ${userId} authenticated on socket ${socket.id}`);
     socket.userId = userId;
     socket.join(`user_${userId}`);
-  });
-
-  socket.on("test", (data) => {
-    console.log("Test message received:", data);
-    socket.emit("test-response", { message: "Server received your test!" });
+    console.log(`User ${userId} authenticated | Active: ${activeConnections}`);
   });
 
   socket.on("disconnect", () => {
-    console.log("❌ Client disconnected:", socket.id);
+    activeConnections--;
+    console.log(
+      `❌ Disconnected: ${socket.id} | Remaining: ${activeConnections}`
+    );
+
+    pushMetric("WebSocketConnections", activeConnections, "Count");
   });
 });
 
@@ -128,3 +134,11 @@ server.listen(process.env.PORT, () => {
   console.log(`FRONTEND_URL: ${process.env.FRONTEND_URL}`);
   console.log("✨ Socket.io ready on port", process.env.PORT);
 });
+
+// 每分钟推送一次汇总指标
+setInterval(() => {
+  console.log(
+    `📊 Stats - Connections: ${activeConnections}, Notifications: ${totalNotificationsSent}`
+  );
+  pushMetric("WebSocketConnections", activeConnections, "Count");
+}, 60000);
