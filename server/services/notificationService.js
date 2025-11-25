@@ -29,7 +29,7 @@ async function createNotification(notificationData, req) {
     return notification;
   } catch (error) {
     console.error("Create notification error:", error);
-    pushMetricToCloudWatch("NotificationErrors", 1, "Count");
+    pushMetric("NotificationErrors", 1, "Count");
     throw error;
   }
 }

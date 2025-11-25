@@ -22,6 +22,7 @@ const NotificationSchema = new mongoose.Schema(
         "journey_liked",
         "detail_liked",
         "journey_commented",
+        "journey_bookmarked",
         "comment_replied",
         "comment_liked",
         "new_follower",
