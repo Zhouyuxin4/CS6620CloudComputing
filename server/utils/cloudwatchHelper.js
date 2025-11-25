@@ -1,7 +1,7 @@
 // utils/cloudwatchHelper.js
 const AWS = require("aws-sdk");
 const cloudwatch = new AWS.CloudWatch({
-  region: process.env.AWS_REGION || "us-east-2",
+  region: "us-east-2",
 });
 
 function pushMetric(metricName, value, unit = "Count", dimension = null) {
