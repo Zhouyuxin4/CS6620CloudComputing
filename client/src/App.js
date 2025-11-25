@@ -70,9 +70,13 @@ function App() {
         console.log("🔊 Playing notification sound...");
         playNotificationSound();
 
-        // Show browser notification (if permission granted)
-        console.log("🔔 Showing browser notification...");
-        notificationService.showNotification(notification);
+        // Show browser notification only in HTTPS (if permission granted)
+        if (window.isSecureContext) {
+          console.log("🔔 Showing browser notification...");
+          notificationService.showNotification(notification);
+        } else {
+          console.log("ℹ️ Browser notification skipped (HTTP environment)");
+        }
       };
 
       console.log("👂 Registering notification listener...");
@@ -102,6 +106,15 @@ function App() {
 
   // Request browser notification permission
   const requestNotificationPermission = async () => {
+    // Check if we're in a secure context (HTTPS or localhost)
+    const isSecure = window.isSecureContext || window.location.hostname === 'localhost';
+    
+    if (!isSecure) {
+      console.log("ℹ️ HTTP environment detected - browser notifications disabled");
+      console.log("ℹ️ In-app toasts and sounds will still work!");
+      return;
+    }
+    
     if (notificationService.isSupported()) {
       const permission = notificationService.getPermission();
       

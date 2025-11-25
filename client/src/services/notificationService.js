@@ -9,6 +9,14 @@ class NotificationService {
 
   // Check if browser supports notifications
   isSupported() {
+    // Service Worker requires HTTPS (or localhost)
+    const isSecureContext = window.isSecureContext || window.location.hostname === 'localhost';
+    
+    if (!isSecureContext) {
+      console.warn('⚠️ Browser notifications require HTTPS. Current site is HTTP.');
+      return false;
+    }
+    
     return 'Notification' in window && 'serviceWorker' in navigator;
   }
 

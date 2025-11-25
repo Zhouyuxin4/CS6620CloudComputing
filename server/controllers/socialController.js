@@ -104,9 +104,10 @@ exports.toggleLike = async (req, res) => {
           { new: true }
         ).populate("userName");
 
-        // Create notification
+        // Create notification - send to journey owner
         if (updateResult && updateResult.userName._id.toString() !== userId) {
           const user = await Users.findById(userId);
+          console.log(`📤 Like notification: ${user.userName} (${userId}) liked journey of ${updateResult.userName.userName} (${updateResult.userName._id})`);
           await createNotification(
             {
               recipientId: updateResult.userName._id,
@@ -118,6 +119,8 @@ exports.toggleLike = async (req, res) => {
             },
             req
           );
+        } else {
+          console.log(`⏭️ No notification: User liked their own journey or no result`);
         }
       } else if (targetModel === "JourneyDetails") {
         updateResult = await JourneyDetails.findByIdAndUpdate(
@@ -129,7 +132,7 @@ exports.toggleLike = async (req, res) => {
           populate: { path: "userName" },
         });
 
-        // Create notification
+        // Create notification - send to journey owner
         if (
           updateResult &&
           updateResult.journeyId.userName._id.toString() !== userId
@@ -137,34 +140,35 @@ exports.toggleLike = async (req, res) => {
           const user = await Users.findById(userId);
           await createNotification(
             {
-              recipientId: updateResult.userName._id,
+              recipientId: updateResult.journeyId.userName._id,
               senderId: userId,
-              type: "journey_liked",
-              targetId: targetId,
+              type: "detail_liked",
+              targetId: updateResult.journeyId._id,
               targetModel: "Journeys",
-              message: `${user.userName} liked your journey "${updateResult.title}"`,
+              message: `${user.userName} liked your journey detail from "${updateResult.journeyId.title}"`,
             },
             req
           );
         }
       } else {
+        // Comments
         updateResult = await Comments.findByIdAndUpdate(
           targetId,
           { $inc: { likesCount: 1 } },
           { new: true }
         ).populate("userId");
 
-        // Create notification
+        // Create notification - send to comment author
         if (updateResult && updateResult.userId._id.toString() !== userId) {
           const user = await Users.findById(userId);
           await createNotification(
             {
-              recipientId: updateResult.userName._id,
+              recipientId: updateResult.userId._id,
               senderId: userId,
-              type: "journey_liked",
+              type: "comment_liked",
               targetId: targetId,
-              targetModel: "Journeys",
-              message: `${user.userName} liked your journey "${updateResult.title}"`,
+              targetModel: "Comments",
+              message: `${user.userName} liked your comment`,
             },
             req
           );
