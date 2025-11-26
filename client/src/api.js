@@ -10,9 +10,6 @@ const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json", // 👈 确保是 application/json
-  },
 });
 
 // request interceptor: add token to header in each request
@@ -23,9 +20,16 @@ api.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
 
+    // 🔥 Important: Only set Content-Type for non-FormData requests
+    // Let browser set Content-Type automatically for FormData (multipart/form-data with boundary)
+    if (!(config.data instanceof FormData)) {
+      config.headers["Content-Type"] = "application/json";
+      }
+
     // 调试日志
     console.log(`API Request: ${config.method.toUpperCase()} ${config.url}`);
     console.log("Token:", token ? "Present" : "Missing");
+    console.log("Content-Type:", config.headers["Content-Type"] || "auto (FormData)");
 
     return config;
   },
