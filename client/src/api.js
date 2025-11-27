@@ -3,7 +3,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 // read environment variable for API base URL
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
+// Force HTTPS for production to fix Mixed Content error
+const API_BASE_URL = "https://yopapi.online";
+// const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 // create axios instance
 const api = axios.create({
@@ -27,14 +29,16 @@ api.interceptors.request.use(
       }
 
     // 调试日志
-    console.log(`API Request: ${config.method.toUpperCase()} ${config.url}`);
-    console.log("Token:", token ? "Present" : "Missing");
-    console.log("Content-Type:", config.headers["Content-Type"] || "auto (FormData)");
+    console.log(`🔵 [API Request] ${config.method.toUpperCase()} ${config.url}`);
+    console.log(`   BaseURL: ${config.baseURL}`);
+    console.log(`   Full URL: ${config.baseURL || ''}${config.url}`);
+    console.log("   Token:", token ? "Present" : "Missing");
+    console.log("   Content-Type:", config.headers["Content-Type"] || "auto (FormData)");
 
     return config;
   },
   (error) => {
-    console.error("Request interceptor error:", error);
+    console.error("🔴 [API Interceptor Error]:", error);
     return Promise.reject(error);
   }
 );
