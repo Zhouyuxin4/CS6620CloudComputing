@@ -6,18 +6,22 @@ const { createNotification } = require("../services/notificationService");
 // Send a test notification (For latency testing)
 exports.sendTestNotification = async (req, res) => {
   try {
-    const { recipientId } = req.body;
+    const { recipientId, senderId } = req.body;
     
     if (!recipientId) {
         return res.status(400).json({ message: "recipientId is required" });
     }
 
+    // Use provided senderId or fallback to recipientId (self)
+    // In a real scenario, senderId would come from auth token
+    const actualSenderId = senderId || recipientId;
+
     const notification = await createNotification({
         recipientId,
-        senderId: recipientId, // self as sender for test
+        senderId: actualSenderId, 
         type: "new_follower", // valid enum value
-        message: "Latency Test Notification",
-        targetId: recipientId, // self
+        message: "Real Interaction Test",
+        targetId: actualSenderId, // self
         targetModel: "Users"
     }, req);
 
