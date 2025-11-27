@@ -53,3 +53,4 @@ self.addEventListener('message', (event) => {
 
 console.log('📡 Service Worker loaded');
 
+

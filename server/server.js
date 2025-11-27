@@ -23,6 +23,7 @@ app.use(
       const allowedOrigins = [
         "http://localhost:3001",
         "http://localhost:3000",
+        "https://d3poa9chf7dsh1.cloudfront.net",
         process.env.FRONTEND_URL,
       ];
 
@@ -100,6 +101,7 @@ const io = new Server(server, {
     origin: [
       "http://localhost:3001",
       "http://localhost:3000",
+      "https://d3poa9chf7dsh1.cloudfront.net",
       process.env.FRONTEND_URL,
     ],
     credentials: true,
