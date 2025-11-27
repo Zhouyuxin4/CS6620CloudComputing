@@ -49,10 +49,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // 4. 添加调试日志中间件
 app.use((req, res, next) => {
-  console.log(`\n[${new Date().toISOString()}] ${req.method} ${req.path}`);
-  console.log("Origin:", req.headers.origin);
-  console.log("Cookies:", req.cookies);
-  console.log("Authorization:", req.headers.authorization);
+  // console.log(`\n[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  // console.log("Origin:", req.headers.origin);
+  // console.log("Cookies:", req.cookies);
+  // console.log("Authorization:", req.headers.authorization);
   next();
 });
 

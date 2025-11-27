@@ -18,9 +18,9 @@ async function createNotification(notificationData, req) {
       });
 
       totalNotificationsSent++;
-      console.log(
-        `📤 Sent notification #${totalNotificationsSent} to user_${notificationData.recipientId}`
-      );
+      // console.log(
+      //   `📤 Sent notification #${totalNotificationsSent} to user_${notificationData.recipientId}`
+      // );
 
       pushMetric("NotificationsSent", 1, "Count");
       pushMetric("NotificationType", 1, "Count", notificationData.type);

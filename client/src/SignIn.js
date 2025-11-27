@@ -43,23 +43,23 @@ function SignIn() {
         );
       }
     } else {
-      console.log("🔵 [SignIn] Signing in with:", { userName, password });
+      // console.log("🔵 [SignIn] Signing in with:", { userName, password });
       
       try {
-        console.log("🔵 [SignIn] Attempting POST to /users/login");
+        // console.log("🔵 [SignIn] Attempting POST to /users/login");
         const response = await api.post("/users/login", {
           userName,
           password,
         });
 
-        console.log("🟢 [SignIn] Server response received:", response);
-        console.log("🟢 [SignIn] Response data:", response.data);
+        // console.log("🟢 [SignIn] Server response received:", response);
+        // console.log("🟢 [SignIn] Response data:", response.data);
 
         const token = response.data.token;
         const user = response.data.user;
 
-        console.log("🟢 [SignIn] Extracted token:", token);
-        console.log("🟢 [SignIn] Extracted user:", user);
+        // console.log("🟢 [SignIn] Extracted token:", token);
+        // console.log("🟢 [SignIn] Extracted user:", user);
 
         if (!token) {
           console.error("🔴 [SignIn] Token is missing from server response!");
@@ -73,12 +73,12 @@ function SignIn() {
         Cookies.set("userName", user.userName, { expires: 7, path: "/" });
 
         // 验证 Cookie 是否设置成功
-        console.log("🔵 [SignIn] Verifying Cookies:");
-        console.log("   Token:", Cookies.get("token"));
-        console.log("   User:", Cookies.get("user"));
-        console.log("   UserName:", Cookies.get("userName"));
+        // console.log("🔵 [SignIn] Verifying Cookies:");
+        // console.log("   Token:", Cookies.get("token"));
+        // console.log("   User:", Cookies.get("user"));
+        // console.log("   UserName:", Cookies.get("userName"));
 
-        console.log("🔵 [SignIn] Navigating to /homepageafterlogin");
+        // console.log("🔵 [SignIn] Navigating to /homepageafterlogin");
         navigate("/homepageafterlogin");
       } catch (err) {
         console.error("🔴 [SignIn] Login FAILED:", err);

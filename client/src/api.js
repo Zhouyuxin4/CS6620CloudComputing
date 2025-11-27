@@ -29,11 +29,11 @@ api.interceptors.request.use(
       }
 
     // 调试日志
-    console.log(`🔵 [API Request] ${config.method.toUpperCase()} ${config.url}`);
-    console.log(`   BaseURL: ${config.baseURL}`);
-    console.log(`   Full URL: ${config.baseURL || ''}${config.url}`);
-    console.log("   Token:", token ? "Present" : "Missing");
-    console.log("   Content-Type:", config.headers["Content-Type"] || "auto (FormData)");
+    // console.log(`🔵 [API Request] ${config.method.toUpperCase()} ${config.url}`);
+    // console.log(`   BaseURL: ${config.baseURL}`);
+    // console.log(`   Full URL: ${config.baseURL || ''}${config.url}`);
+    // console.log("   Token:", token ? "Present" : "Missing");
+    // console.log("   Content-Type:", config.headers["Content-Type"] || "auto (FormData)");
 
     return config;
   },
