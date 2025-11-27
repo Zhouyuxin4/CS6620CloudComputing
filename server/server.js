@@ -88,6 +88,23 @@ app.get("/", (req, res) => {
   res.send("Welcome to the YOP API.");
 });
 
+// 暴露系统指标接口
+app.get("/metrics", (req, res) => {
+  const used = process.memoryUsage();
+  res.json({
+    status: "ok",
+    uptime: process.uptime(),
+    activeSocketConnections: activeConnections,
+    totalNotificationsSent,
+    memory: {
+      rss: `${Math.round((used.rss / 1024 / 1024) * 100) / 100} MB`,
+      heapTotal: `${Math.round((used.heapTotal / 1024 / 1024) * 100) / 100} MB`,
+      heapUsed: `${Math.round((used.heapUsed / 1024 / 1024) * 100) / 100} MB`,
+    },
+    cpu: process.cpuUsage(),
+  });
+});
+
 // activate server
 // app.listen(process.env.PORT, () => {
 //   console.log(`Server running on port ${process.env.PORT}`);

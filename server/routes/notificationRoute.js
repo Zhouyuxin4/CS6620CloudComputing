@@ -14,6 +14,12 @@ router.get(
   notificationController.getUnreadCount
 );
 
+// Send test notification (No auth for easier testing, or use auth if preferred)
+router.post(
+    "/test",
+    notificationController.sendTestNotification
+);
+
 // Mark notification as read
 router.put(
   "/:notificationId/read",
