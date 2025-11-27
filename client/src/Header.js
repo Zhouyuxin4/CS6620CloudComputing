@@ -23,6 +23,11 @@ const Header = ({ userName }) => {
   // Fetch unread notification count
   useEffect(() => {
     if (userName) {
+      // Ensure socket is connected before setting listeners
+      if (!socketService.isConnected()) {
+        socketService.connect();
+      }
+
       fetchUnreadCount();
 
       // Listen for new notifications to update count
@@ -30,7 +35,15 @@ const Header = ({ userName }) => {
         setUnreadCount((prev) => prev + 1);
       };
 
-      socketService.on("new-notification", handleNewNotification);
+      // Use a slight delay or check connection to avoid "Socket not connected" race condition
+      // Better: The socketService.on method should ideally queue or handle this, 
+      // but let's make sure we call connect first (above).
+      // We'll wrap this in a try-catch just in case the synchronous connect() isn't instant enough for the check inside .on()
+      try {
+        socketService.on("new-notification", handleNewNotification);
+      } catch (error) {
+        console.error("Error setting up notification listener:", error);
+      }
 
       // Refresh count periodically
       const interval = setInterval(fetchUnreadCount, 30000); // Every 30 seconds
