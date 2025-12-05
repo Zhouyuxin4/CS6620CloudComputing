@@ -8,18 +8,23 @@ async function createNotification(notificationData, req) {
     const notification = new Notifications(notificationData);
     await notification.save();
 
-    const io = req?.app?.get("io");
-    if (io) {
-      io.to(`user_${notificationData.recipientId}`).emit("new-notification", {
-        ...notificationData,
-        _id: notification._id,
-        createdAt: notification.createdAt,
-        isRead: false,
+    const redisPub = req?.app?.get("redisPub");
+    if (redisPub) {
+      const message = JSON.stringify({
+        recipientId: notificationData.recipientId,
+        notification: {
+          ...notificationData,
+          _id: notification._id,
+          createdAt: notification.createdAt,
+          isRead: false,
+        },
       });
+
+      redisPub.publish("notifications", message);
 
       totalNotificationsSent++;
       console.log(
-        `📤 Sent notification #${totalNotificationsSent} to user_${notificationData.recipientId}`
+        `📤 Published notification #${totalNotificationsSent} for user_${notificationData.recipientId}`
       );
 
       pushMetric("NotificationsSent", 1, "Count");

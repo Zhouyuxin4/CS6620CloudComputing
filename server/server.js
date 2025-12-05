@@ -3,20 +3,23 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const Redis = require("ioredis");
 
 const app = express();
-const http = require("http");
-const { Server } = require("socket.io");
 
 // 1. cookie parser
-// test cicd workflow 11.12 v2
 app.use(cookieParser());
 const { pushMetric } = require("./utils/cloudwatchHelper");
 
-let activeConnections = 0;
-let totalNotificationsSent = 0;
+// 2. Redis 发布连接（用于发送通知到 Socket 服务器）
+const redisPub = new Redis(process.env.REDIS_URL);
+redisPub.on("connect", () => console.log("✅ Redis publisher connected"));
+redisPub.on("error", (err) => console.error("❌ Redis error:", err.message));
 
-// 2. CORS settings
+// 把 redisPub 挂到 app 上，方便其他地方使用
+app.set("redisPub", redisPub);
+
+// 3. CORS settings
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -42,11 +45,11 @@ app.use(
   })
 );
 
-// 3. body parser
+// 4. body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 4. 添加调试日志中间件
+// 5. 调试日志中间件
 app.use((req, res, next) => {
   console.log(`\n[${new Date().toISOString()}] ${req.method} ${req.path}`);
   console.log("Origin:", req.headers.origin);
@@ -55,7 +58,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// 5. 数据库连接
+// 6. 数据库连接
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -68,7 +71,7 @@ mongoose
     console.log("Error connecting to MongoDB", error.message);
   });
 
-// 6. 路由!
+// 7. 路由
 const userRoutes = require("./routes/userRoutes");
 const journeyRoutes = require("./routes/journeyRoutes");
 const journeyDetailRoutes = require("./routes/journeyDetailRoutes");
@@ -87,61 +90,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to the YOP API.");
 });
 
-// activate server
-// app.listen(process.env.PORT, () => {
-//   console.log(`Server running on port ${process.env.PORT}`);
-//   console.log(`FRONTEND_URL: ${process.env.FRONTEND_URL}`);
-// });
-
-const server = http.createServer(app);
-
-const io = new Server(server, {
-  cors: {
-    origin: [
-      "http://localhost:3001",
-      "http://localhost:3000",
-      process.env.FRONTEND_URL,
-    ],
-    credentials: true,
-  },
-});
-
-io.on("connection", (socket) => {
-  activeConnections++;
-  console.log(
-    `✅ Connected: ${socket.id} | Total connections: ${activeConnections}`
-  );
-
-  pushMetric("WebSocketConnections", activeConnections, "Count");
-
-  socket.on("authenticate", (userId) => {
-    socket.userId = userId;
-    socket.join(`user_${userId}`);
-    console.log(`User ${userId} authenticated | Active: ${activeConnections}`);
-  });
-
-  socket.on("disconnect", () => {
-    activeConnections--;
-    console.log(
-      `❌ Disconnected: ${socket.id} | Remaining: ${activeConnections}`
-    );
-
-    pushMetric("WebSocketConnections", activeConnections, "Count");
-  });
-});
-
-app.set("io", io);
-
-server.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+// 8. 启动服务器（纯 HTTP，不再包含 Socket.io）
+app.listen(process.env.PORT, () => {
+  console.log(`🚀 API Server running on port ${process.env.PORT}`);
   console.log(`FRONTEND_URL: ${process.env.FRONTEND_URL}`);
-  console.log("✨ Socket.io ready on port", process.env.PORT);
 });
-
-// 每分钟推送一次汇总指标
-setInterval(() => {
-  console.log(
-    `📊 Stats - Connections: ${activeConnections}, Notifications: ${totalNotificationsSent}`
-  );
-  pushMetric("WebSocketConnections", activeConnections, "Count");
-}, 60000);
