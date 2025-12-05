@@ -14,7 +14,7 @@ class SocketService {
       return;
     }
 
-    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
+    const API_URL = "https://yopapi.online";
     
     this.socket = io(API_URL, {
       withCredentials: true,
@@ -71,17 +71,23 @@ class SocketService {
 
   on(event, callback) {
     if (!this.socket) {
-      console.error("Socket not connected. Call connect() first.");
-      return;
+      console.warn("Socket not connected when calling .on(). Attempting auto-connect...");
+      this.connect();
     }
 
-    this.socket.on(event, callback);
-    
-    // Store listener for cleanup
-    if (!this.listeners.has(event)) {
-      this.listeners.set(event, []);
+    // If connect() was called, this.socket might now exist (or be initializing)
+    // But if it failed completely, we still need to guard.
+    if (this.socket) {
+        this.socket.on(event, callback);
+        
+        // Store listener for cleanup
+        if (!this.listeners.has(event)) {
+        this.listeners.set(event, []);
+        }
+        this.listeners.get(event).push(callback);
+    } else {
+        console.error("Failed to initialize socket for event listener:", event);
     }
-    this.listeners.get(event).push(callback);
   }
 
   off(event, callback) {
@@ -116,4 +122,5 @@ class SocketService {
 // Export singleton instance
 const socketService = new SocketService();
 export default socketService;
+
 

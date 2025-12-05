@@ -43,23 +43,26 @@ function SignIn() {
         );
       }
     } else {
-      console.log("Signing in:", { userName, password });
+      // console.log("🔵 [SignIn] Signing in with:", { userName, password });
+      
       try {
+        // console.log("🔵 [SignIn] Attempting POST to /users/login");
         const response = await api.post("/users/login", {
           userName,
           password,
         });
 
-        console.log("Server response:", response.data);
+        // console.log("🟢 [SignIn] Server response received:", response);
+        // console.log("🟢 [SignIn] Response data:", response.data);
 
         const token = response.data.token;
         const user = response.data.user;
 
-        console.log("Extracted token:", token);
-        console.log("Extracted user:", user);
+        // console.log("🟢 [SignIn] Extracted token:", token);
+        // console.log("🟢 [SignIn] Extracted user:", user);
 
         if (!token) {
-          console.error("Token is missing from server response!");
+          console.error("🔴 [SignIn] Token is missing from server response!");
           alert("Login failed: Token not received");
           return;
         }
@@ -70,16 +73,26 @@ function SignIn() {
         Cookies.set("userName", user.userName, { expires: 7, path: "/" });
 
         // 验证 Cookie 是否设置成功
-        console.log("Cookie token:", Cookies.get("token"));
-        console.log("Cookie user:", Cookies.get("user"));
-        console.log("Cookie userName:", Cookies.get("userName"));
+        // console.log("🔵 [SignIn] Verifying Cookies:");
+        // console.log("   Token:", Cookies.get("token"));
+        // console.log("   User:", Cookies.get("user"));
+        // console.log("   UserName:", Cookies.get("userName"));
 
+        // console.log("🔵 [SignIn] Navigating to /homepageafterlogin");
         navigate("/homepageafterlogin");
       } catch (err) {
-        console.error(
-          "Login failed:",
-          err.response?.data?.message || err.message
-        );
+        console.error("🔴 [SignIn] Login FAILED:", err);
+        
+        if (err.response) {
+            console.error("🔴 [SignIn] Error Response Status:", err.response.status);
+            console.error("🔴 [SignIn] Error Response Data:", err.response.data);
+            console.error("🔴 [SignIn] Error Response Headers:", err.response.headers);
+        } else if (err.request) {
+            console.error("🔴 [SignIn] No response received (Network Error?)", err.request);
+        } else {
+            console.error("🔴 [SignIn] Error setting up request:", err.message);
+        }
+
         alert(
           err.response?.data?.message ||
             "Invalid credentials. Please try again."
